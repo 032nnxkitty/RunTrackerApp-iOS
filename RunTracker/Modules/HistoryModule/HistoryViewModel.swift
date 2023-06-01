@@ -9,7 +9,7 @@ import Foundation
 
 protocol HistoryViewModel {
     var numberOfRuns: Int { get }
-    func getHistoryCellViewModelForCell(at indexPath: IndexPath) -> HistoryCellViewModel
+    //func getHistoryCellViewModelForCell(at indexPath: IndexPath) -> HistoryCellViewModel
 }
 
 final class HistoryViewModelImpl: HistoryViewModel {
@@ -18,7 +18,7 @@ final class HistoryViewModelImpl: HistoryViewModel {
         return 100
     }
     
-    func getHistoryCellViewModelForCell(at indexPath: IndexPath) -> HistoryCellViewModel {
-        return HistoryCellViewModel()
-    }
+//    func getHistoryCellViewModelForCell(at indexPath: IndexPath) -> HistoryCellViewModel {
+//        return HistoryCellViewModel()
+//    }
 }
