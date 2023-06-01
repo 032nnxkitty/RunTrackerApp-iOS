@@ -9,8 +9,8 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     // MARK: - UI Elements
-    var mainVC:    UIViewController = MainViewController()
-    var historyVC: UIViewController = HistoryViewController()
+    var mainVC:    UIViewController = Assembly.createMainModule()
+    var historyVC: UIViewController = Assembly.createHistoryModule()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {

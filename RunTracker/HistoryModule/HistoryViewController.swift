@@ -8,6 +8,7 @@
 import UIKit
 
 final class HistoryViewController: UIViewController {
+    private var viewModel: HistoryViewModel!
     // MARK: - UI Elements
     private lazy var historyTableView: UITableView = {
         let tableView = UITableView()
@@ -23,6 +24,11 @@ final class HistoryViewController: UIViewController {
         super.viewDidLoad()
         configureAppearance()
         configureHistoryTableView()
+    }
+    
+    // MARK: - Public Methods
+    func setViewModel(_ viewModel: HistoryViewModel) {
+        self.viewModel = viewModel
     }
 }
 

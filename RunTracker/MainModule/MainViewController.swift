@@ -8,12 +8,18 @@
 import UIKit
 
 final class MainViewController: UIViewController {
+    private var viewModel: MainViewModel!
     // MARK: - UI Elements
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
+    }
+    
+    // MARK: - Public Methods
+    func setViewModel(_ viewModel: MainViewModel) {
+        self.viewModel = viewModel
     }
 }
 
