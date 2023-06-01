@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  RunTracker
 //
 //  Created by Arseniy Zolotarev on 01.06.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class MainViewController: UIViewController {
     // MARK: - UI Elements
     
     // MARK: - View Life Cycle
@@ -18,9 +18,11 @@ final class ViewController: UIViewController {
 }
 
 // MARK: - Private Methods
-private extension ViewController {
+private extension MainViewController {
     func configureAppearance() {
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
+        title = "Run!"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
