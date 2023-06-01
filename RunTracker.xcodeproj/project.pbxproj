@@ -17,6 +17,9 @@
 		10A642272A291FCF0018F76F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642262A291FCF0018F76F /* MainViewModel.swift */; };
 		10A642292A291FDE0018F76F /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642282A291FDE0018F76F /* HistoryViewModel.swift */; };
 		10A6422B2A2920E50018F76F /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6422A2A2920E50018F76F /* Assembly.swift */; };
+		10A6422E2A29220B0018F76F /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6422D2A29220B0018F76F /* HistoryCell.swift */; };
+		10A642302A2923760018F76F /* HistoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6422F2A2923760018F76F /* HistoryCellViewModel.swift */; };
+		10A642332A29271B0018F76F /* RunsHistoryKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642322A29271A0018F76F /* RunsHistoryKeeper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		10A642262A291FCF0018F76F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		10A642282A291FDE0018F76F /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		10A6422A2A2920E50018F76F /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		10A6422D2A29220B0018F76F /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		10A6422F2A2923760018F76F /* HistoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellViewModel.swift; sourceTree = "<group>"; };
+		10A642322A29271A0018F76F /* RunsHistoryKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunsHistoryKeeper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				10A642222A291D6E0018F76F /* App */,
-				10A642232A291D800018F76F /* MainModule */,
-				10A642242A291D870018F76F /* HistoryModule */,
+				10A642312A2926770018F76F /* Services */,
+				10A642342A2927570018F76F /* Modules */,
 				10A642252A291DA60018F76F /* SupportingFiles */,
 			);
 			path = RunTracker;
@@ -97,6 +103,8 @@
 			children = (
 				10A642202A29192E0018F76F /* HistoryViewController.swift */,
 				10A642282A291FDE0018F76F /* HistoryViewModel.swift */,
+				10A6422D2A29220B0018F76F /* HistoryCell.swift */,
+				10A6422F2A2923760018F76F /* HistoryCellViewModel.swift */,
 			);
 			path = HistoryModule;
 			sourceTree = "<group>";
@@ -109,6 +117,23 @@
 				10A642162A2909240018F76F /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		10A642312A2926770018F76F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				10A642322A29271A0018F76F /* RunsHistoryKeeper.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		10A642342A2927570018F76F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				10A642232A291D800018F76F /* MainModule */,
+				10A642242A291D870018F76F /* HistoryModule */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,8 +209,11 @@
 				10A6420D2A2909220018F76F /* MainViewController.swift in Sources */,
 				10A6422B2A2920E50018F76F /* Assembly.swift in Sources */,
 				10A6421F2A2918ED0018F76F /* TabBarController.swift in Sources */,
+				10A6422E2A29220B0018F76F /* HistoryCell.swift in Sources */,
 				10A642092A2909220018F76F /* AppDelegate.swift in Sources */,
 				10A642212A29192E0018F76F /* HistoryViewController.swift in Sources */,
+				10A642332A29271B0018F76F /* RunsHistoryKeeper.swift in Sources */,
+				10A642302A2923760018F76F /* HistoryCellViewModel.swift in Sources */,
 				10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */,
 				10A642272A291FCF0018F76F /* MainViewModel.swift in Sources */,
 				10A642292A291FDE0018F76F /* HistoryViewModel.swift in Sources */,

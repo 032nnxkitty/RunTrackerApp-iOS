@@ -9,10 +9,11 @@ import UIKit
 
 final class HistoryViewController: UIViewController {
     private var viewModel: HistoryViewModel!
+    
     // MARK: - UI Elements
     private lazy var historyTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(HistoryCell.self, forCellReuseIdentifier: HistoryCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -54,11 +55,11 @@ private extension HistoryViewController {
 // MARK: - UITableViewDataSource
 extension HistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.numberOfRuns
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
         var content = cell.defaultContentConfiguration()
         content.text = "history"
         content.secondaryText = "secondary"
