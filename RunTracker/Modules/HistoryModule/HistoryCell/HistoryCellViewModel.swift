@@ -8,8 +8,6 @@
 import Foundation
 
 struct HistoryCellViewModel {
-    var duration: TimeInterval
-    var date: Date
-    var km: Double
-    var cal: Int
+    var distanceMeters:  Double
+    var durationMinutes: Double
 }

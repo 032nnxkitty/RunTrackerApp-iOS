@@ -7,18 +7,10 @@
 
 import UIKit
 
-final class HistoryViewController: UIViewController {
+final class HistoryViewController: UITableViewController {
     private var viewModel: HistoryViewModel!
     
     // MARK: - UI Elements
-    private lazy var historyTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(HistoryCell.self, forCellReuseIdentifier: HistoryCell.identifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        tableView.delegate = self
-        return tableView
-    }()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -42,36 +34,33 @@ private extension HistoryViewController {
     }
     
     func configureHistoryTableView() {
-        view.addSubview(historyTableView)
-        NSLayoutConstraint.activate([
-            historyTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            historyTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            historyTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            historyTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        tableView.register(HistoryCell.self, forCellReuseIdentifier: HistoryCell.identifier)
     }
 }
 
-// MARK: - UITableViewDataSource
-extension HistoryViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+// MARK: - Table View Configure
+extension HistoryViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRuns
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
-        var content = cell.defaultContentConfiguration()
-        content.text = "history"
-        content.secondaryText = "secondary"
-        cell.contentConfiguration = content
+        let cellViewModel = viewModel.getViewModelForCell(at: indexPath)
+        cell.configure(with: cellViewModel)
         return cell
     }
-}
-
-// MARK: - UITableViewDelegate
-extension HistoryViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // ..
     }
 }
 
