@@ -12,6 +12,18 @@ final class MainViewController: UIViewController {
     private var viewModel: MainViewModel!
     
     // MARK: - UI Elements
+    private let statsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        return stack
+    }()
+    
+    private let distanceStatsView = StatsView()
+    private let durationStatsView = StatsView()
+    private let kcalStatsView     = StatsView()
+    
     private let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +32,7 @@ final class MainViewController: UIViewController {
         return mapView
     }()
     
-    private var startRunButton: UIButton = {
+    private let startRunButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
         configuration.baseBackgroundColor = R.Colors.accentCoral
         configuration.cornerStyle = .capsule
@@ -37,7 +49,9 @@ final class MainViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureAppearance()
+        configureStatsStack()
         configureMapView()
         configureButton()
     }
@@ -53,16 +67,32 @@ private extension MainViewController {
     func configureAppearance() {
         view.backgroundColor = .systemBackground
         title = "Run!"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func configureStatsStack() {
+        view.addSubview(statsStack)
+        NSLayoutConstraint.activate([
+            statsStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            statsStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            statsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
         
-        navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
+        distanceStatsView.configure(title: "Total distance", value: "1000 km", accentColor: R.Colors.accentCoral)
+        statsStack.addArrangedSubview(distanceStatsView)
+        
+        durationStatsView.configure(title: "Total duration", value: "22 h", accentColor: R.Colors.accentGreen)
+        statsStack.addArrangedSubview(durationStatsView)
+        
+        kcalStatsView.configure(title: "Total kcal", value: "5004 kcal", accentColor: .systemBlue)
+        statsStack.addArrangedSubview(kcalStatsView)
     }
     
     func configureMapView() {
         mapView.showsCompass = true
         view.addSubview(mapView)
         NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
+            mapView.topAnchor.constraint(equalTo: statsStack.bottomAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
