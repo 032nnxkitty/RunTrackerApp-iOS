@@ -38,8 +38,8 @@ final class HistoryCell: UITableViewCell {
     
     // MARK: - Public Methods
     func configure(with viewModel: HistoryCellViewModel) {
-        timeValueLabel.text = "\(viewModel.durationMinutes)"
-        distanceValueLabel.text = "\(viewModel.distanceMeters)"
+        timeValueLabel.text = viewModel.durationSeconds.formatDuration()
+        distanceValueLabel.text = viewModel.distanceMeters.formatDistance()
     }
 }
 

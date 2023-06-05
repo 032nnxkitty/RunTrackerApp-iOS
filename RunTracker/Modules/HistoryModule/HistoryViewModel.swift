@@ -13,16 +13,15 @@ protocol HistoryViewModel {
 }
 
 final class HistoryViewModelImpl: HistoryViewModel {
+    private var arr: [HistoryCellViewModel] {
+        var res = [HistoryCellViewModel]()
+        for _ in 0...33 {
+            res.append(HistoryCellViewModel(distanceMeters:  Double.random(in: 1111...12345), durationSeconds: Double.random(in: 3600...6666)))
+        }
+        return res
+    }
     
-    private let arr: [HistoryCellViewModel] = [
-        HistoryCellViewModel(distanceMeters: 100, durationMinutes: 100),
-        HistoryCellViewModel(distanceMeters: 100, durationMinutes: 100),
-        HistoryCellViewModel(distanceMeters: 100, durationMinutes: 100),
-        HistoryCellViewModel(distanceMeters: 100, durationMinutes: 100),
-        HistoryCellViewModel(distanceMeters: 100, durationMinutes: 100),
-        HistoryCellViewModel(distanceMeters: 100, durationMinutes: 100),
-        HistoryCellViewModel(distanceMeters: 100, durationMinutes: 100),
-    ]
+    // MARK: - HistoryViewModel Protocol
     var numberOfRuns: Int {
         return arr.count
     }

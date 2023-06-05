@@ -8,6 +8,6 @@
 import Foundation
 
 struct HistoryCellViewModel {
-    var distanceMeters:  Double
-    var durationMinutes: Double
+    var distanceMeters:  Double 
+    var durationSeconds: Double
 }
