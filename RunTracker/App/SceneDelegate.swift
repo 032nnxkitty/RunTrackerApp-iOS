@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UserDefaults.standard.isOnboarded = false
         
         window = UIWindow(windowScene: windowScene)
+        window?.overrideUserInterfaceStyle = .dark
         window?.rootViewController = UserDefaults.standard.isOnboarded ? TabBarController() : OnboardingViewController()
         window?.makeKeyAndVisible()
     }
