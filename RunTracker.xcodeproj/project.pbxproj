@@ -11,6 +11,8 @@
 		107953FB2A2D0A15005AEC75 /* UserDefaults+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */; };
 		107953FD2A2E1510005AEC75 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FC2A2E1510005AEC75 /* Double+Formatting.swift */; };
 		107954002A2E1EF1005AEC75 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FF2A2E1EF1005AEC75 /* StatsView.swift */; };
+		107954032A2E2513005AEC75 /* RunSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954022A2E2513005AEC75 /* RunSessionViewController.swift */; };
+		107954052A2E2523005AEC75 /* RunSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954042A2E2523005AEC75 /* RunSessionViewModel.swift */; };
 		10A642092A2909220018F76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642082A2909220018F76F /* AppDelegate.swift */; };
 		10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6420A2A2909220018F76F /* SceneDelegate.swift */; };
 		10A6420D2A2909220018F76F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6420C2A2909220018F76F /* MainViewController.swift */; };
@@ -35,6 +37,8 @@
 		107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Onboarding.swift"; sourceTree = "<group>"; };
 		107953FC2A2E1510005AEC75 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
 		107953FF2A2E1EF1005AEC75 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		107954022A2E2513005AEC75 /* RunSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionViewController.swift; sourceTree = "<group>"; };
+		107954042A2E2523005AEC75 /* RunSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionViewModel.swift; sourceTree = "<group>"; };
 		10A642052A2909220018F76F /* RunTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A642082A2909220018F76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10A6420A2A2909220018F76F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,15 @@
 				107953FF2A2E1EF1005AEC75 /* StatsView.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		107954012A2E24E5005AEC75 /* RunSesstionModule */ = {
+			isa = PBXGroup;
+			children = (
+				107954022A2E2513005AEC75 /* RunSessionViewController.swift */,
+				107954042A2E2523005AEC75 /* RunSessionViewModel.swift */,
+			);
+			path = RunSesstionModule;
 			sourceTree = "<group>";
 		};
 		10A641FC2A2909220018F76F = {
@@ -156,6 +169,7 @@
 		10A642342A2927570018F76F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				107954012A2E24E5005AEC75 /* RunSesstionModule */,
 				107953F72A2D0922005AEC75 /* OnboardingModule */,
 				10A642232A291D800018F76F /* MainModule */,
 				10A642242A291D870018F76F /* HistoryModule */,
@@ -268,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10A6420D2A2909220018F76F /* MainViewController.swift in Sources */,
+				107954032A2E2513005AEC75 /* RunSessionViewController.swift in Sources */,
 				10A642432A2939B30018F76F /* UIColor+RGB.swift in Sources */,
 				10A6422B2A2920E50018F76F /* Assembly.swift in Sources */,
 				10A6421F2A2918ED0018F76F /* TabBarController.swift in Sources */,
@@ -279,6 +294,7 @@
 				10A642332A29271B0018F76F /* RunsHistoryKeeper.swift in Sources */,
 				10A6423C2A2929770018F76F /* RunInfoModel.swift in Sources */,
 				10A642302A2923760018F76F /* HistoryCellViewModel.swift in Sources */,
+				107954052A2E2523005AEC75 /* RunSessionViewModel.swift in Sources */,
 				10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */,
 				107953FD2A2E1510005AEC75 /* Double+Formatting.swift in Sources */,
 				10A642272A291FCF0018F76F /* MainViewModel.swift in Sources */,
