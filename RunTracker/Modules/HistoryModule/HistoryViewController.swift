@@ -53,6 +53,9 @@ extension HistoryViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let vc = Assembly.createRunSessionStatsModule()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

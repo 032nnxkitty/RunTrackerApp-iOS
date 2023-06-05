@@ -32,17 +32,18 @@ final class MainViewController: UIViewController {
         return mapView
     }()
     
-    private let startRunButton: UIButton = {
+    private lazy var startRunButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
         configuration.baseBackgroundColor = R.Colors.accentCoral
         configuration.cornerStyle = .capsule
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
         
         let button = UIButton()
-        button.titleLabel?.font = .boldSystemFont(ofSize: 17)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .boldSystemFont(ofSize: 17)
         button.setTitle("Run!", for: .normal)
         button.configuration = configuration
+        button.addTarget(self, action: #selector(startRunButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -106,6 +107,11 @@ private extension MainViewController {
             startRunButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -70),
             startRunButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
+    }
+    
+    @objc func startRunButtonDidTap() {
+        let vc = Assembly.createRunSessionModule()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
