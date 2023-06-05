@@ -10,11 +10,13 @@
 		107953F92A2D0957005AEC75 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953F82A2D0957005AEC75 /* OnboardingViewController.swift */; };
 		107953FB2A2D0A15005AEC75 /* UserDefaults+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */; };
 		107953FD2A2E1510005AEC75 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FC2A2E1510005AEC75 /* Double+Formatting.swift */; };
-		107954002A2E1EF1005AEC75 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FF2A2E1EF1005AEC75 /* StatsView.swift */; };
+		107954002A2E1EF1005AEC75 /* TotalStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FF2A2E1EF1005AEC75 /* TotalStatsView.swift */; };
 		107954032A2E2513005AEC75 /* RunSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954022A2E2513005AEC75 /* RunSessionViewController.swift */; };
 		107954052A2E2523005AEC75 /* RunSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954042A2E2523005AEC75 /* RunSessionViewModel.swift */; };
 		107954082A2E263E005AEC75 /* RunSessionStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954072A2E263E005AEC75 /* RunSessionStatsViewModel.swift */; };
 		1079540A2A2E2675005AEC75 /* RunSessionStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954092A2E2675005AEC75 /* RunSessionStatsViewController.swift */; };
+		107954132A2E44FC005AEC75 /* HistoryCellStatsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954122A2E44FB005AEC75 /* HistoryCellStatsSectionView.swift */; };
+		107954152A2E4EF0005AEC75 /* Int+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954142A2E4EF0005AEC75 /* Int+Formatting.swift */; };
 		10A642092A2909220018F76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642082A2909220018F76F /* AppDelegate.swift */; };
 		10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6420A2A2909220018F76F /* SceneDelegate.swift */; };
 		10A6420D2A2909220018F76F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6420C2A2909220018F76F /* MainViewController.swift */; };
@@ -38,11 +40,13 @@
 		107953F82A2D0957005AEC75 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Onboarding.swift"; sourceTree = "<group>"; };
 		107953FC2A2E1510005AEC75 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
-		107953FF2A2E1EF1005AEC75 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		107953FF2A2E1EF1005AEC75 /* TotalStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalStatsView.swift; sourceTree = "<group>"; };
 		107954022A2E2513005AEC75 /* RunSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionViewController.swift; sourceTree = "<group>"; };
 		107954042A2E2523005AEC75 /* RunSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionViewModel.swift; sourceTree = "<group>"; };
 		107954072A2E263E005AEC75 /* RunSessionStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionStatsViewModel.swift; sourceTree = "<group>"; };
 		107954092A2E2675005AEC75 /* RunSessionStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionStatsViewController.swift; sourceTree = "<group>"; };
+		107954122A2E44FB005AEC75 /* HistoryCellStatsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellStatsSectionView.swift; sourceTree = "<group>"; };
+		107954142A2E4EF0005AEC75 /* Int+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Formatting.swift"; sourceTree = "<group>"; };
 		10A642052A2909220018F76F /* RunTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A642082A2909220018F76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10A6420A2A2909220018F76F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,14 +87,6 @@
 			path = OnboardingModule;
 			sourceTree = "<group>";
 		};
-		107953FE2A2E1EE1005AEC75 /* Subviews */ = {
-			isa = PBXGroup;
-			children = (
-				107953FF2A2E1EF1005AEC75 /* StatsView.swift */,
-			);
-			path = Subviews;
-			sourceTree = "<group>";
-		};
 		107954012A2E24E5005AEC75 /* RunSesstionModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +103,15 @@
 				107954092A2E2675005AEC75 /* RunSessionStatsViewController.swift */,
 			);
 			path = RunSesstionStatsModule;
+			sourceTree = "<group>";
+		};
+		107954112A2E44AB005AEC75 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				107953FF2A2E1EF1005AEC75 /* TotalStatsView.swift */,
+				107954122A2E44FB005AEC75 /* HistoryCellStatsSectionView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		10A641FC2A2909220018F76F = {
@@ -152,7 +157,6 @@
 			children = (
 				10A6420C2A2909220018F76F /* MainViewController.swift */,
 				10A642262A291FCF0018F76F /* MainViewModel.swift */,
-				107953FE2A2E1EE1005AEC75 /* Subviews */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -170,6 +174,7 @@
 		10A642252A291DA60018F76F /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				107954112A2E44AB005AEC75 /* Subviews */,
 				10A642412A2939A30018F76F /* Extensions */,
 				10A642112A2909240018F76F /* Assets.xcassets */,
 				10A642132A2909240018F76F /* LaunchScreen.storyboard */,
@@ -215,6 +220,7 @@
 				10A642422A2939B30018F76F /* UIColor+RGB.swift */,
 				107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */,
 				107953FC2A2E1510005AEC75 /* Double+Formatting.swift */,
+				107954142A2E4EF0005AEC75 /* Int+Formatting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				107954152A2E4EF0005AEC75 /* Int+Formatting.swift in Sources */,
 				10A6420D2A2909220018F76F /* MainViewController.swift in Sources */,
 				107954032A2E2513005AEC75 /* RunSessionViewController.swift in Sources */,
 				10A642432A2939B30018F76F /* UIColor+RGB.swift in Sources */,
@@ -305,7 +312,7 @@
 				10A642212A29192E0018F76F /* HistoryViewController.swift in Sources */,
 				107954082A2E263E005AEC75 /* RunSessionStatsViewModel.swift in Sources */,
 				107953F92A2D0957005AEC75 /* OnboardingViewController.swift in Sources */,
-				107954002A2E1EF1005AEC75 /* StatsView.swift in Sources */,
+				107954002A2E1EF1005AEC75 /* TotalStatsView.swift in Sources */,
 				10A642332A29271B0018F76F /* RunsHistoryKeeper.swift in Sources */,
 				10A6423C2A2929770018F76F /* RunInfoModel.swift in Sources */,
 				10A642302A2923760018F76F /* HistoryCellViewModel.swift in Sources */,
@@ -316,6 +323,7 @@
 				107953FB2A2D0A15005AEC75 /* UserDefaults+Onboarding.swift in Sources */,
 				1079540A2A2E2675005AEC75 /* RunSessionStatsViewController.swift in Sources */,
 				10A642402A2939840018F76F /* R.swift in Sources */,
+				107954132A2E44FC005AEC75 /* HistoryCellStatsSectionView.swift in Sources */,
 				10A642292A291FDE0018F76F /* HistoryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,9 +20,9 @@ final class MainViewController: UIViewController {
         return stack
     }()
     
-    private let distanceStatsView = StatsView()
-    private let durationStatsView = StatsView()
-    private let kcalStatsView     = StatsView()
+    private let distanceStatsView = TotalStatsView(title: "Total Distance", accentColor: R.Colors.accentCoral)
+    private let durationStatsView = TotalStatsView(title: "Total Duration", accentColor: .systemYellow)
+    private let kcalStatsView     = TotalStatsView(title: "Total Kcal", accentColor: .systemBlue)
     
     private let mapView: MKMapView = {
         let mapView = MKMapView()
@@ -57,6 +57,14 @@ final class MainViewController: UIViewController {
         configureButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        distanceStatsView.setValue(viewModel.totalDistance)
+        durationStatsView.setValue(viewModel.totalDuration)
+        kcalStatsView.setValue(viewModel.totalKcal)
+    }
+    
     // MARK: - Public Methods
     func setViewModel(_ viewModel: MainViewModel) {
         self.viewModel = viewModel
@@ -67,8 +75,7 @@ final class MainViewController: UIViewController {
 private extension MainViewController {
     func configureAppearance() {
         view.backgroundColor = .systemBackground
-        title = "Run!"
-        //navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Run tracker"
     }
     
     func configureStatsStack() {
@@ -79,14 +86,9 @@ private extension MainViewController {
             statsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
         
-        distanceStatsView.configure(title: "Total distance", value: "1000 km", accentColor: R.Colors.accentCoral)
-        statsStack.addArrangedSubview(distanceStatsView)
-        
-        durationStatsView.configure(title: "Total duration", value: "22 h", accentColor: R.Colors.accentGreen)
-        statsStack.addArrangedSubview(durationStatsView)
-        
-        kcalStatsView.configure(title: "Total kcal", value: "5004 kcal", accentColor: .systemBlue)
-        statsStack.addArrangedSubview(kcalStatsView)
+        [distanceStatsView, durationStatsView, kcalStatsView].forEach {
+            statsStack.addArrangedSubview($0)
+        }
     }
     
     func configureMapView() {

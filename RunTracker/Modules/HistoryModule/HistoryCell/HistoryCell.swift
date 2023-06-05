@@ -11,19 +11,22 @@ final class HistoryCell: UITableViewCell {
     static let identifier = "HistoryCell"
     
     // MARK: - UI Elements
-    private let containerStack: UIStackView = {
+    private let containerHStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
+        stack.spacing = 0
         stack.distribution = .fillEqually
         return stack
     }()
     
-    private lazy var timeTitleLabel:     UILabel = setupTitleLabel(text: "Duration")
-    private lazy var distanceTitleLabel: UILabel = setupTitleLabel(text: "Distance")
+    private lazy var leftStack   = setupVStack()
+    private lazy var rightStack = setupVStack()
     
-    private lazy var timeValueLabel:     UILabel = setupValueLabel(color: R.Colors.accentCoral)
-    private lazy var distanceValueLabel: UILabel = setupValueLabel(color: .systemBlue)
+    private let durationSection = HistoryCellStatsSectionView(title: "Duration", accentColor: R.Colors.accentCoral)
+    private let distanceSection = HistoryCellStatsSectionView(title: "Distance", accentColor: .systemBlue)
+    private let kcalSection     = HistoryCellStatsSectionView(title: "Kcal", accentColor: .systemYellow)
+    private let dateSection     = HistoryCellStatsSectionView(title: "Date", accentColor: .gray)
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,8 +41,10 @@ final class HistoryCell: UITableViewCell {
     
     // MARK: - Public Methods
     func configure(with viewModel: HistoryCellViewModel) {
-        timeValueLabel.text = viewModel.durationSeconds.formatDuration()
-        distanceValueLabel.text = viewModel.distanceMeters.formatDistance()
+        durationSection.setValue(viewModel.formattedDuration)
+        distanceSection.setValue(viewModel.formattedDistance)
+        kcalSection.setValue(viewModel.formattedKcal)
+        dateSection.setValue(viewModel.formattedDate)
     }
 }
 
@@ -51,40 +56,24 @@ private extension HistoryCell {
     }
     
     func configureContent() {
-        contentView.addSubview(containerStack)
+        contentView.addSubview(containerHStack)
         NSLayoutConstraint.activate([
-            containerStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            containerStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            containerStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            containerStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            containerHStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            containerHStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            containerHStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            containerHStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
         
-        let timeSection = setupVStack(subviews: [timeTitleLabel, timeValueLabel])
-        let distanceSection = setupVStack(subviews: [distanceTitleLabel, distanceValueLabel])
-        
-        containerStack.addArrangedSubview(timeSection)
-        containerStack.addArrangedSubview(distanceSection)
+        [durationSection, kcalSection].forEach { leftStack.addArrangedSubview($0) }
+        [distanceSection, dateSection].forEach { rightStack.addArrangedSubview($0) }
+        [leftStack, rightStack].forEach { containerHStack.addArrangedSubview($0) }
     }
     
-    func setupTitleLabel(text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.font = .preferredFont(forTextStyle: .headline)
-        return label
-    }
-    
-    func setupValueLabel(color: UIColor) -> UILabel {
-        let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .title2)
-        label.textColor = color
-        return label
-    }
-    
-    func setupVStack(subviews: [UIView]) -> UIStackView {
+    func setupVStack() -> UIStackView {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 0
-        subviews.forEach { stack.addArrangedSubview($0) }
+        stack.spacing = 8
+        stack.distribution = .fillEqually
         return stack
     }
 }

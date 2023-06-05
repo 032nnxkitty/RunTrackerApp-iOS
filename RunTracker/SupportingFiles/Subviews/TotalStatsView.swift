@@ -1,5 +1,5 @@
 //
-//  StatsView.swift
+//  TotalStatsView.swift
 //  RunTracker
 //
 //  Created by Arseniy Zolotarev on 05.06.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StatsView: UIStackView {
+final class TotalStatsView: UIStackView {
     // MARK: - UI Elements
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -19,12 +19,15 @@ final class StatsView: UIStackView {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 25)
         label.textAlignment = .center
+        label.text = "..."
         return label
     }()
     
     // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(title: String, accentColor: UIColor) {
+        super.init(frame: .zero)
+        titleLabel.text = title
+        valueLabel.textColor = accentColor
         configureStack()
     }
     
@@ -33,23 +36,19 @@ final class StatsView: UIStackView {
     }
     
     // MARK: - Public Methods
-    func configure(title: String, value: String, accentColor: UIColor) {
-        titleLabel.text = title
+    func setValue(_ value: String) {
         valueLabel.text = value
-        valueLabel.textColor = accentColor
     }
 }
 
 // MARK: - Private Methods
-private extension StatsView {
+private extension TotalStatsView {
     func configureStack() {
         axis = .vertical
         spacing = 4
         distribution = .fill
         isLayoutMarginsRelativeArrangement = true
         layoutMargins = UIEdgeInsets(top: 16, left: 4, bottom: 16, right: 4)
-        
-        addArrangedSubview(valueLabel)
-        addArrangedSubview(titleLabel)
+        [valueLabel, titleLabel].forEach { addArrangedSubview($0) }
     }
 }
