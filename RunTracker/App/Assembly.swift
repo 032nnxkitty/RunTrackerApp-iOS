@@ -30,4 +30,11 @@ final class Assembly {
         vc.setViewModel(viewModel)
         return vc
     }
+    
+    static func createRunSessionStatsModule() -> UIViewController {
+        let viewModel = RunSessionStatsViewModelImpl()
+        let vc = RunSessionStatsViewController()
+        vc.setViewModel(viewModel)
+        return vc
+    }
 }
