@@ -25,15 +25,8 @@ final class OnboardingViewController: UIViewController {
         return label
     }()
     
-    private lazy var startButton: UIButton = {
-        var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = R.Colors.accentCoral
-        config.baseForegroundColor = .white
-        config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-        config.cornerStyle = .capsule
-        config.title = "Get Started!"
-        
-        let button = UIButton(configuration: config)
+    private lazy var startButton: RoundedButton = {
+        let button = RoundedButton(text: "Let's Start!", color: R.Colors.accentCoral)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startButtonDidTap), for: .touchUpInside)
         return button

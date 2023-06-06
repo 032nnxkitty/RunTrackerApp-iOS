@@ -17,6 +17,7 @@
 		1079540A2A2E2675005AEC75 /* RunSessionStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954092A2E2675005AEC75 /* RunSessionStatsViewController.swift */; };
 		107954132A2E44FC005AEC75 /* HistoryCellStatsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954122A2E44FB005AEC75 /* HistoryCellStatsSectionView.swift */; };
 		107954152A2E4EF0005AEC75 /* Int+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954142A2E4EF0005AEC75 /* Int+Formatting.swift */; };
+		107954372A2F9E53005AEC75 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954362A2F9E53005AEC75 /* RoundedButton.swift */; };
 		10A642092A2909220018F76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642082A2909220018F76F /* AppDelegate.swift */; };
 		10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6420A2A2909220018F76F /* SceneDelegate.swift */; };
 		10A6420D2A2909220018F76F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6420C2A2909220018F76F /* MainViewController.swift */; };
@@ -47,6 +48,7 @@
 		107954092A2E2675005AEC75 /* RunSessionStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionStatsViewController.swift; sourceTree = "<group>"; };
 		107954122A2E44FB005AEC75 /* HistoryCellStatsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellStatsSectionView.swift; sourceTree = "<group>"; };
 		107954142A2E4EF0005AEC75 /* Int+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Formatting.swift"; sourceTree = "<group>"; };
+		107954362A2F9E53005AEC75 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		10A642052A2909220018F76F /* RunTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A642082A2909220018F76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10A6420A2A2909220018F76F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				107953FF2A2E1EF1005AEC75 /* TotalStatsView.swift */,
 				107954122A2E44FB005AEC75 /* HistoryCellStatsSectionView.swift */,
+				107954362A2F9E53005AEC75 /* RoundedButton.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				10A642272A291FCF0018F76F /* MainViewModel.swift in Sources */,
 				107953FB2A2D0A15005AEC75 /* UserDefaults+Onboarding.swift in Sources */,
 				1079540A2A2E2675005AEC75 /* RunSessionStatsViewController.swift in Sources */,
+				107954372A2F9E53005AEC75 /* RoundedButton.swift in Sources */,
 				10A642402A2939840018F76F /* R.swift in Sources */,
 				107954132A2E44FC005AEC75 /* HistoryCellStatsSectionView.swift in Sources */,
 				10A642292A291FDE0018F76F /* HistoryViewModel.swift in Sources */,

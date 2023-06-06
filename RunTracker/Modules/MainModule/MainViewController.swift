@@ -32,17 +32,9 @@ final class MainViewController: UIViewController {
         return mapView
     }()
     
-    private lazy var startRunButton: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = R.Colors.accentCoral
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
-        
-        let button = UIButton()
+    private lazy var startRunButton: RoundedButton = {
+        let button = RoundedButton(text: "Run!", color: R.Colors.accentCoral)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .boldSystemFont(ofSize: 17)
-        button.setTitle("Run!", for: .normal)
-        button.configuration = configuration
         button.addTarget(self, action: #selector(startRunButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -113,6 +105,7 @@ private extension MainViewController {
     
     @objc func startRunButtonDidTap() {
         let vc = Assembly.createRunSessionModule()
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
 }
