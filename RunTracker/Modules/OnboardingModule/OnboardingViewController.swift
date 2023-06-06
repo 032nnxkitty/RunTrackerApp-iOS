@@ -20,7 +20,7 @@ final class OnboardingViewController: UIViewController {
     private let infoLabel1: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Track your activity\nand get better life"
+        label.text = "Track your activity and get better life"
         label.font = .syntheseBold(size: 30, style: .largeTitle)
         label.textAlignment = .center
         return label
@@ -28,7 +28,6 @@ final class OnboardingViewController: UIViewController {
     
     private let infoLabel2: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.text = "Run and check the distance you have covered using the run tracker"
         label.font = .syntheseLight(size: 17, style: .body)
@@ -48,7 +47,6 @@ final class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         configureAppearance()
-        configureBackgroundImageView()
         configureStartButton()
         configureInfoLabels()
     }
@@ -57,10 +55,6 @@ final class OnboardingViewController: UIViewController {
 // MARK: - Private Methods
 private extension OnboardingViewController {
     func configureAppearance() {
-        view.backgroundColor = .systemBackground
-    }
-    
-    func configureBackgroundImageView() {
         view.insertSubview(backgroundImageView, at: 0)
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -92,8 +86,7 @@ private extension OnboardingViewController {
             labelsStack.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -32)
         ])
         
-        labelsStack.addArrangedSubview(infoLabel1)
-        labelsStack.addArrangedSubview(infoLabel2)
+        [infoLabel1, infoLabel2].forEach { labelsStack.addArrangedSubview($0) }
     }
     
     @objc func startButtonDidTap() {
