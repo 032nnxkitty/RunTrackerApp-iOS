@@ -9,24 +9,35 @@ import UIKit
 
 final class OnboardingViewController: UIViewController {
     // MARK: - UI Elements
-    private let imageView: UIImageView = {
+    private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "figure.run")
-        imageView.tintColor = R.Colors.accentGreen
+        imageView.image = UIImage(named: "onboardingImage")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
-    private let welcomeLabel: UILabel = {
+    private let infoLabel1: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Track your activity\nand get better life"
+        label.font = .syntheseBold(size: 30, style: .largeTitle)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let infoLabel2: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Welcome!"
-        label.font = .preferredFont(forTextStyle: .title1)
+        label.numberOfLines = 0
+        label.text = "Run and check the distance you have covered using the run tracker"
+        label.font = .syntheseLight(size: 17, style: .body)
+        label.textAlignment = .center
         return label
     }()
     
     private lazy var startButton: RoundedButton = {
-        let button = RoundedButton(text: "Let's Start!", color: R.Colors.accentCoral)
+        let button = RoundedButton(text: "Start Journey", color: R.Colors.accentGreen)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startButtonDidTap), for: .touchUpInside)
         return button
@@ -37,9 +48,9 @@ final class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         configureAppearance()
-        configureImageView()
-        configureWelcomeLabel()
+        configureBackgroundImageView()
         configureStartButton()
+        configureInfoLabels()
     }
 }
 
@@ -49,30 +60,40 @@ private extension OnboardingViewController {
         view.backgroundColor = .systemBackground
     }
     
-    func configureImageView() {
-        view.addSubview(imageView)
+    func configureBackgroundImageView() {
+        view.insertSubview(backgroundImageView, at: 0)
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -50),
-            imageView.heightAnchor.constraint(equalToConstant: 200),
-            imageView.widthAnchor.constraint(equalToConstant: 200)
-        ])
-    }
-    
-    func configureWelcomeLabel() {
-        view.addSubview(welcomeLabel)
-        NSLayoutConstraint.activate([
-            welcomeLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            welcomeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8)
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
     func configureStartButton() {
         view.addSubview(startButton)
         NSLayoutConstraint.activate([
-            startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            startButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+            startButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 22),
+            startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -22),
+            startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32)
         ])
+    }
+    
+    func configureInfoLabels() {
+        let labelsStack = UIStackView()
+        labelsStack.translatesAutoresizingMaskIntoConstraints = false
+        labelsStack.axis = .vertical
+        labelsStack.spacing = 16
+        
+        view.addSubview(labelsStack)
+        NSLayoutConstraint.activate([
+            labelsStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 22),
+            labelsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -22),
+            labelsStack.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -32)
+        ])
+        
+        labelsStack.addArrangedSubview(infoLabel1)
+        labelsStack.addArrangedSubview(infoLabel2)
     }
     
     @objc func startButtonDidTap() {

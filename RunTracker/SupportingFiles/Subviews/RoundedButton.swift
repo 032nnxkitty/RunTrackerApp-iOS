@@ -23,10 +23,14 @@ final class RoundedButton: UIButton {
     private func configureAppearance(text: String, color: UIColor) {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = color
+        config.baseForegroundColor = .black
         config.cornerStyle = .capsule
         config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
-        
-        titleLabel?.font = .boldSystemFont(ofSize: 17)
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = .syntheseBold(size: 17, style: .body)
+            return outgoing
+        }
         setTitle(text, for: .normal)
         self.configuration = config
     }
