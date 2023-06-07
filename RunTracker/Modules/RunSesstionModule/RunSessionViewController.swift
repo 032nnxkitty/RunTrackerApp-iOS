@@ -57,6 +57,11 @@ final class RunSessionViewController: UIViewController {
         configureSessionButtons()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.viewDidAppear()
+    }
+    
     // MARK: - Public Methods
     func setViewModel(_ viewModel: RunSessionViewModel) {
         self.viewModel = viewModel

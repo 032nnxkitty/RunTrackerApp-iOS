@@ -6,8 +6,8 @@
 
 ## Features
 - MVVM architecture
+- Observable Object
 - MKMapKit
-- HealthKit
 - Realm
 - Onboarding screen
 - Without storyboard
