@@ -30,13 +30,13 @@ final class OnboardingViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Run and check the distance you have covered using the run tracker"
-        label.font = .syntheseLight(size: 17, style: .body)
+        label.font = .syntheseLight(size: 14, style: .footnote)
         label.textAlignment = .center
         return label
     }()
     
     private lazy var startButton: CapsuleButton = {
-        let button = CapsuleButton(text: "Start Journey", color: R.Colors.accentGreen)
+        let button = CapsuleButton(text: "Start Journey", background: R.Colors.accentGreen)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startButtonDidTap), for: .touchUpInside)
         return button

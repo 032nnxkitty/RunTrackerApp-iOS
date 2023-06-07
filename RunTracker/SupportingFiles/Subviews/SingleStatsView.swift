@@ -1,5 +1,5 @@
 //
-//  TotalStatsView.swift
+//  SingleStatsView.swift
 //  RunTracker
 //
 //  Created by Arseniy Zolotarev on 05.06.2023.
@@ -7,27 +7,29 @@
 
 import UIKit
 
-final class TotalStatsView: UIStackView {
+final class SingleStatsView: UIStackView {
     // MARK: - UI Elements
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        return label
-    }()
-    
     private let valueLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 25)
+        label.font = .boldSystemFont(ofSize: 27)
+        label.textColor = .white
         label.textAlignment = .center
         label.text = "..."
         return label
     }()
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = .lightGray
+        label.textAlignment = .center
+        return label
+    }()
+    
     // MARK: - Init
-    init(title: String, accentColor: UIColor) {
+    init(title: String) {
         super.init(frame: .zero)
         titleLabel.text = title
-        valueLabel.textColor = accentColor
         configureStack()
     }
     
@@ -42,7 +44,7 @@ final class TotalStatsView: UIStackView {
 }
 
 // MARK: - Private Methods
-private extension TotalStatsView {
+private extension SingleStatsView {
     func configureStack() {
         axis = .vertical
         spacing = 4

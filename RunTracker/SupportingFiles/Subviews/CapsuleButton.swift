@@ -8,11 +8,14 @@
 import UIKit
 
 final class CapsuleButton: UIButton {
+    // MARK: - Public Properties
+    var isAnimated = false
+    
     // MARK: - Init
-    init(text: String? = nil, image: UIImage? = nil, color: UIColor) {
+    init(text: String? = nil, image: UIImage? = nil, background: UIColor) {
         super.init(frame: .zero)
         
-        configureAppearance(text: text, image: image, color: color)
+        configureAppearance(text: text, image: image, color: background)
     }
     
     required init?(coder: NSCoder) {
@@ -22,6 +25,7 @@ final class CapsuleButton: UIButton {
     // MARK: - Override Methods & Properties
     override var isHighlighted: Bool {
         didSet {
+            guard isAnimated else { return }
             UIView.animate(
                 withDuration: 0.1,
                 delay: 0,

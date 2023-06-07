@@ -20,34 +20,29 @@ final class RunSessionViewController: UIViewController {
         return mapView
     }()
     
-    private let durationLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .largeTitle)
-        label.text = "00:32:39"
-        return label
-    }()
-    
     private lazy var pauseButton: CapsuleButton = {
-        let button = CapsuleButton(text: "Pause", color: .systemGray6)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let button = CapsuleButton(text: "Pause", background: .systemGray6)
         button.addTarget(self, action: #selector(pauseButtonDidTap), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration?.baseForegroundColor = .white
+        button.isAnimated = true
         return button
     }()
     
     private lazy var lockButton: CapsuleButton = {
-        let button = CapsuleButton(image: UIImage(systemName: "lock.fill"), color: R.Colors.accentGreen)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let button = CapsuleButton(image: UIImage(systemName: "lock.fill"), background: R.Colors.accentGreen)
         button.addTarget(self, action: #selector(lockButtonDidTap), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isAnimated = true
         return button
     }()
     
     private lazy var finishButton: CapsuleButton = {
-        let button = CapsuleButton(text: "Finish", color: .systemGray6)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let button = CapsuleButton(text: "Finish", background: .systemGray6)
         button.addTarget(self, action: #selector(finishButtonDidTap), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration?.baseForegroundColor = .white
+        button.isAnimated = true
         return button
     }()
     
@@ -71,6 +66,8 @@ final class RunSessionViewController: UIViewController {
 private extension RunSessionViewController {
     func configureAppearance() {
         view.backgroundColor = .systemBackground
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonDidTap))
+        navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
     }
     
     func configureMapView() {
@@ -91,8 +88,7 @@ private extension RunSessionViewController {
         NSLayoutConstraint.activate([
             statsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             statsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            statsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            statsView.heightAnchor.constraint(equalToConstant: 200)
+            statsView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
     
@@ -120,6 +116,10 @@ private extension RunSessionViewController {
 }
 
 @objc private extension RunSessionViewController {
+    func closeButtonDidTap() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     func pauseButtonDidTap() {
         
     }
@@ -131,5 +131,6 @@ private extension RunSessionViewController {
     func lockButtonDidTap() {
         
     }
+    
 }
 
