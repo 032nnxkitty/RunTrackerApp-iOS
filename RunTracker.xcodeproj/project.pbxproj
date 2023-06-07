@@ -22,6 +22,7 @@
 		1079543C2A2FADB3005AEC75 /* synthese-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1079543B2A2FADB3005AEC75 /* synthese-light.otf */; };
 		1079543E2A2FAE34005AEC75 /* UIFont+Synthese.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079543D2A2FAE34005AEC75 /* UIFont+Synthese.swift */; };
 		1079547A2A300678005AEC75 /* RunSessionStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954792A300678005AEC75 /* RunSessionStatsView.swift */; };
+		1079547C2A31140F005AEC75 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079547B2A31140F005AEC75 /* ObservableObject.swift */; };
 		10A642092A2909220018F76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642082A2909220018F76F /* AppDelegate.swift */; };
 		10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6420A2A2909220018F76F /* SceneDelegate.swift */; };
 		10A6420D2A2909220018F76F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6420C2A2909220018F76F /* MainViewController.swift */; };
@@ -57,6 +58,7 @@
 		1079543B2A2FADB3005AEC75 /* synthese-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "synthese-light.otf"; sourceTree = "<group>"; };
 		1079543D2A2FAE34005AEC75 /* UIFont+Synthese.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Synthese.swift"; sourceTree = "<group>"; };
 		107954792A300678005AEC75 /* RunSessionStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionStatsView.swift; sourceTree = "<group>"; };
+		1079547B2A31140F005AEC75 /* ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
 		10A642052A2909220018F76F /* RunTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A642082A2909220018F76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10A6420A2A2909220018F76F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				10A642132A2909240018F76F /* LaunchScreen.storyboard */,
 				10A642162A2909240018F76F /* Info.plist */,
 				10A6423F2A2939840018F76F /* R.swift */,
+				1079547B2A31140F005AEC75 /* ObservableObject.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				1079540A2A2E2675005AEC75 /* RunSessionStatsViewController.swift in Sources */,
 				107954372A2F9E53005AEC75 /* CapsuleButton.swift in Sources */,
 				10A642402A2939840018F76F /* R.swift in Sources */,
+				1079547C2A31140F005AEC75 /* ObservableObject.swift in Sources */,
 				107954132A2E44FC005AEC75 /* HistoryCellStatsSectionView.swift in Sources */,
 				10A642292A291FDE0018F76F /* HistoryViewModel.swift in Sources */,
 			);

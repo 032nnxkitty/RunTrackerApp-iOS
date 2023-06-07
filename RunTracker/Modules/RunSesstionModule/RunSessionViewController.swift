@@ -30,7 +30,7 @@ final class RunSessionViewController: UIViewController {
     }()
     
     private lazy var lockButton: CapsuleButton = {
-        let button = CapsuleButton(image: UIImage(systemName: "lock.fill"), background: R.Colors.accentGreen)
+        let button = CapsuleButton(image: UIImage(systemName: "lock.open.fill"), background: R.Colors.accentGreen)
         button.addTarget(self, action: #selector(lockButtonDidTap), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isAnimated = true
@@ -51,6 +51,7 @@ final class RunSessionViewController: UIViewController {
         super.viewDidLoad()
         
         configureAppearance()
+        binding()
         configureMapView()
         configureTopStack()
         configureSessionButtons()
@@ -68,6 +69,20 @@ private extension RunSessionViewController {
         view.backgroundColor = .systemBackground
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonDidTap))
         navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
+    }
+    
+    func binding() {
+        viewModel.isUserInteractionEnabled.bind { [weak self] newValue in
+            guard let self else { return }
+            
+            self.lockButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemRed
+            self.lockButton.configuration?.image = newValue ? UIImage(systemName: "lock.open.fill") : UIImage(systemName: "lock.fill")
+            
+            self.finishButton.isUserInteractionEnabled = newValue
+            self.pauseButton.isUserInteractionEnabled = newValue
+            self.mapView.isUserInteractionEnabled = newValue
+            self.navigationController?.navigationBar.isUserInteractionEnabled = newValue
+        }
     }
     
     func configureMapView() {
@@ -129,8 +144,7 @@ private extension RunSessionViewController {
     }
     
     func lockButtonDidTap() {
-        
+        viewModel.isUserInteractionEnabled.value.toggle()
     }
-    
 }
 

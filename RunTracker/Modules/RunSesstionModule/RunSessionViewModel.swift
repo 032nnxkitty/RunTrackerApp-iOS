@@ -8,9 +8,9 @@
 import Foundation
 
 protocol RunSessionViewModel {
-    
+    var isUserInteractionEnabled: ObservableObject<Bool> { get set }
 }
 
 final class RunSessionViewModelImpl: RunSessionViewModel {
-    
+    var isUserInteractionEnabled: ObservableObject<Bool> = .init(value: true)
 }
