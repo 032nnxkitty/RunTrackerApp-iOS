@@ -32,8 +32,8 @@ final class MainViewController: UIViewController {
         return mapView
     }()
     
-    private lazy var startRunButton: RoundedButton = {
-        let button = RoundedButton(text: "Run!", color: R.Colors.accentCoral)
+    private lazy var startRunButton: CapsuleButton = {
+        let button = CapsuleButton(text: "Run!", color: R.Colors.accentCoral)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startRunButtonDidTap), for: .touchUpInside)
         return button
@@ -84,7 +84,6 @@ private extension MainViewController {
     }
     
     func configureMapView() {
-        mapView.showsCompass = true
         view.addSubview(mapView)
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: statsStack.bottomAnchor),

@@ -7,20 +7,32 @@
 
 import UIKit
 
-final class RoundedButton: UIButton {
+final class CapsuleButton: UIButton {
     // MARK: - Init
-    init(text: String, color: UIColor) {
+    init(text: String? = nil, image: UIImage? = nil, color: UIColor) {
         super.init(frame: .zero)
         
-        configureAppearance(text: text, color: color)
+        configureAppearance(text: text, image: image, color: color)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Override Methods & Properties
+    override var isHighlighted: Bool {
+        didSet {
+            UIView.animate(
+                withDuration: 0.1,
+                delay: 0,
+                options: [.beginFromCurrentState, .allowUserInteraction]) {
+                    self.transform = self.isHighlighted ? .init(scaleX: 0.9, y: 0.9) : .init(scaleX: 1, y: 1)
+                }
+        }
+    }
+    
     // MARK: - Private Methods
-    private func configureAppearance(text: String, color: UIColor) {
+    private func configureAppearance(text: String? = nil, image: UIImage? = nil, color: UIColor) {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = color
         config.baseForegroundColor = .black
@@ -31,7 +43,15 @@ final class RoundedButton: UIButton {
             outgoing.font = .syntheseBold(size: 17, style: .body)
             return outgoing
         }
-        setTitle(text, for: .normal)
+        
+        if let text {
+            setTitle(text, for: .normal)
+        }
+        
+        if let image {
+            config.image = image
+        }
+        
         self.configuration = config
     }
 }

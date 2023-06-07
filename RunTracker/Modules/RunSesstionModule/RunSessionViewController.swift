@@ -15,7 +15,7 @@ final class RunSessionViewController: UIViewController {
     private let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.overrideUserInterfaceStyle = .light
+        mapView.overrideUserInterfaceStyle = .dark
         mapView.mapType = .standard
         return mapView
     }()
@@ -28,15 +28,26 @@ final class RunSessionViewController: UIViewController {
         return label
     }()
     
-    private lazy var pauseButton: RoundedButton = {
-        let button = RoundedButton(text: "Pause", color: .systemGreen)
+    private lazy var pauseButton: CapsuleButton = {
+        let button = CapsuleButton(text: "Pause", color: .systemGray6)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(pauseButtonDidTap), for: .touchUpInside)
+        button.configuration?.baseForegroundColor = .white
         return button
     }()
     
-    private lazy var finishButton: RoundedButton = {
-        let button = RoundedButton(text: "Finish", color: R.Colors.accentCoral)
+    private lazy var lockButton: CapsuleButton = {
+        let button = CapsuleButton(image: UIImage(systemName: "lock.fill"), color: R.Colors.accentGreen)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(lockButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var finishButton: CapsuleButton = {
+        let button = CapsuleButton(text: "Finish", color: .systemGray6)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(finishButtonDidTap), for: .touchUpInside)
+        button.configuration?.baseForegroundColor = .white
         return button
     }()
     
@@ -46,7 +57,7 @@ final class RunSessionViewController: UIViewController {
         
         configureAppearance()
         configureMapView()
-        configureLabels()
+        configureTopStack()
         configureSessionButtons()
     }
     
@@ -63,21 +74,25 @@ private extension RunSessionViewController {
     }
     
     func configureMapView() {
-        mapView.showsCompass = true
-        view.addSubview(mapView)
+        view.insertSubview(mapView, at: 0)
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mapView.heightAnchor.constraint(equalToConstant: 220)
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
-    func configureLabels() {
-        view.addSubview(durationLabel)
+    func configureTopStack() {
+        let statsView = RunSessionStatsView()
+        statsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(statsView)
         NSLayoutConstraint.activate([
-            durationLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 16),
-            durationLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+            statsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            statsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            statsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            statsView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
     
@@ -85,17 +100,22 @@ private extension RunSessionViewController {
         let containerStack = UIStackView()
         containerStack.translatesAutoresizingMaskIntoConstraints = false
         containerStack.axis = .horizontal
-        containerStack.distribution = .fillEqually
-        containerStack.spacing = 16
+        containerStack.distribution = .fill
+        containerStack.spacing = 10
         
         view.addSubview(containerStack)
         NSLayoutConstraint.activate([
             containerStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             containerStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            containerStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+            containerStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
         
-        [finishButton ,pauseButton].forEach { containerStack.addArrangedSubview($0) }
+        [finishButton, lockButton, pauseButton].forEach { containerStack.addArrangedSubview($0) }
+        
+        NSLayoutConstraint.activate([
+            pauseButton.widthAnchor.constraint(equalTo: finishButton.widthAnchor, multiplier: 1),
+            lockButton.widthAnchor.constraint(equalTo: lockButton.heightAnchor, multiplier: 1)
+        ])
     }
 }
 
@@ -105,6 +125,10 @@ private extension RunSessionViewController {
     }
     
     func finishButtonDidTap() {
+        
+    }
+    
+    func lockButtonDidTap() {
         
     }
 }

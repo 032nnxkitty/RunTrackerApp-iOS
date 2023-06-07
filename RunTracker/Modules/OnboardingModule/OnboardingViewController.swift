@@ -35,8 +35,8 @@ final class OnboardingViewController: UIViewController {
         return label
     }()
     
-    private lazy var startButton: RoundedButton = {
-        let button = RoundedButton(text: "Start Journey", color: R.Colors.accentGreen)
+    private lazy var startButton: CapsuleButton = {
+        let button = CapsuleButton(text: "Start Journey", color: R.Colors.accentGreen)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startButtonDidTap), for: .touchUpInside)
         return button
@@ -47,8 +47,7 @@ final class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         configureAppearance()
-        configureStartButton()
-        configureInfoLabels()
+        configureElements()
     }
 }
 
@@ -64,29 +63,22 @@ private extension OnboardingViewController {
         ])
     }
     
-    func configureStartButton() {
-        view.addSubview(startButton)
-        NSLayoutConstraint.activate([
-            startButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 22),
-            startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -22),
-            startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32)
-        ])
-    }
-    
-    func configureInfoLabels() {
-        let labelsStack = UIStackView()
-        labelsStack.translatesAutoresizingMaskIntoConstraints = false
-        labelsStack.axis = .vertical
-        labelsStack.spacing = 16
+    func configureElements() {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.spacing = 16
         
-        view.addSubview(labelsStack)
+        view.addSubview(stack)
         NSLayoutConstraint.activate([
-            labelsStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 22),
-            labelsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -22),
-            labelsStack.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -32)
+            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 22),
+            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -22),
+            stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32)
         ])
         
-        [infoLabel1, infoLabel2].forEach { labelsStack.addArrangedSubview($0) }
+        [infoLabel1, infoLabel2, startButton].forEach {
+            stack.addArrangedSubview($0)
+        }
     }
     
     @objc func startButtonDidTap() {
@@ -94,6 +86,7 @@ private extension OnboardingViewController {
         
         let vc = TabBarController()
         vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .flipHorizontal
         present(vc, animated: true)
     }
 }
