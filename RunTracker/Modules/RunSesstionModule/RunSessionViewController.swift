@@ -12,6 +12,8 @@ final class RunSessionViewController: UIViewController {
     private var viewModel: RunSessionViewModel!
     
     // MARK: - UI Elements
+    let statsView = RunSessionStatsView()
+    
     private let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,10 +53,13 @@ final class RunSessionViewController: UIViewController {
         super.viewDidLoad()
         
         configureAppearance()
-        binding()
         configureMapView()
         configureTopStack()
         configureSessionButtons()
+        
+        bindIsUserInteractionEnabled()
+        bindIsOnPause()
+        bindDuration()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,7 +81,7 @@ private extension RunSessionViewController {
         navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
     }
     
-    func binding() {
+    func bindIsUserInteractionEnabled() {
         viewModel.isUserInteractionEnabled.bind { [weak self] newValue in
             guard let self else { return }
             
@@ -87,6 +92,22 @@ private extension RunSessionViewController {
             self.pauseButton.isUserInteractionEnabled = newValue
             self.mapView.isUserInteractionEnabled = newValue
             self.navigationController?.navigationBar.isUserInteractionEnabled = newValue
+        }
+    }
+    
+    func bindIsOnPause() {
+        viewModel.isOnPause.bind { [weak self] newValue in
+            guard let self else { return }
+            self.pauseButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemGray6
+            self.pauseButton.configuration?.baseForegroundColor = newValue ? .black: .white
+        }
+    }
+    
+    func bindDuration() {
+        viewModel.secondsDuration.bind { [weak self] newValue in
+            guard let self else { return }
+            
+            self.statsView.updateDuration(newValue.formatTimer())
         }
     }
     
@@ -101,7 +122,6 @@ private extension RunSessionViewController {
     }
     
     func configureTopStack() {
-        let statsView = RunSessionStatsView()
         statsView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(statsView)
@@ -141,7 +161,7 @@ private extension RunSessionViewController {
     }
     
     func pauseButtonDidTap() {
-        
+        viewModel.pauseButtonDidTap()
     }
     
     func finishButtonDidTap() {

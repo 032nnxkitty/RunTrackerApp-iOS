@@ -9,14 +9,14 @@ import UIKit
 
 final class RunSessionStatsView: UIView {
     // MARK: - UI Elements
-    let gradientLayer = CAGradientLayer()
+    private let gradientLayer = CAGradientLayer()
     
     private let durationValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 50)
-        label.text = "01:23:49"
+        label.text = "00:00:00"
         return label
     }()
     
@@ -42,6 +42,9 @@ final class RunSessionStatsView: UIView {
     }
     
     // MARK: - Public Methods
+    func updateDuration(_ duration: String) {
+        durationValueLabel.text = duration
+    }
 }
 
 // MARK: - Private Methods
