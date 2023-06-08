@@ -12,8 +12,12 @@ final class MainViewController: UIViewController {
     private var viewModel: MainViewModel!
     
     // MARK: - UI Elements
+    private let totalDurationSection = SingleStatsView(title: "Duration")
+    private let totalDistanceSection = SingleStatsView(title: "Distance")
+    private let totalCalSection = SingleStatsView(title: "Cal")
+    
     private lazy var startRunButton: CapsuleButton = {
-        let button = CapsuleButton(text: "Run!", background: R.Colors.accentCoral)
+        let button = CapsuleButton(text: "Run!", background: R.Colors.accentGreen)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startRunButtonDidTap), for: .touchUpInside)
         return button
@@ -24,6 +28,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         configureAppearance()
+        configureTotalStats()
         configureButton()
     }
     
@@ -42,7 +47,25 @@ final class MainViewController: UIViewController {
 private extension MainViewController {
     func configureAppearance() {
         view.backgroundColor = .systemBackground
-        title = "Run tracker"
+        title = "Total stats"
+    }
+    
+    func configureTotalStats() {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        
+        view.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+        ])
+        
+        [totalDistanceSection, totalDurationSection, totalCalSection].forEach {
+            stack.addArrangedSubview($0)
+        }
     }
     
     func configureButton() {

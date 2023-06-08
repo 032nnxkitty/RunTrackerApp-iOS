@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class OnboardingViewController: UIViewController {
+    private let locationManager = CLLocationManager()
+    
     // MARK: - UI Elements
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -54,6 +57,8 @@ final class OnboardingViewController: UIViewController {
 // MARK: - Private Methods
 private extension OnboardingViewController {
     func configureAppearance() {
+        locationManager.delegate = self
+        
         view.insertSubview(backgroundImageView, at: 0)
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -82,11 +87,42 @@ private extension OnboardingViewController {
     }
     
     @objc func startButtonDidTap() {
+        guard locationManager.authorizationStatus == .authorizedWhenInUse else {
+            showLocationAlert()
+            return
+        }
+        
         UserDefaults.standard.isOnboarded = true
         
         let vc = TabBarController()
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .flipHorizontal
         present(vc, animated: true)
+    }
+    
+    func showLocationAlert() {
+        let alert = UIAlertController(title: "App cannot work without location permission",
+                                      message: "Would you like to go to settings?",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(.init(title: "Cancel", style: .cancel))
+        alert.addAction(.init(title: "Settings", style: .default) { _ in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(settingsURL)
+        })
+        
+        present(alert, animated: true)
+    }
+}
+
+extension OnboardingViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+            
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        default:
+            break
+        }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol RunSessionViewModel {
     var isUserInteractionEnabled: ObservableObject<Bool> { get set }
@@ -16,9 +17,16 @@ protocol RunSessionViewModel {
     func pauseButtonDidTap()
 }
 
-final class RunSessionViewModelImpl: RunSessionViewModel {
+final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     // MARK: - Private Properties
     private var timer: Timer?
+    private let locationManager = CLLocationManager()
+    
+    // MARK: - Init
+    override init() {
+        super.init()
+        configureLocationManager()
+    }
     
     // MARK: - Public Properties & Methods
     var isUserInteractionEnabled: ObservableObject<Bool> = .init(value: true)
@@ -35,6 +43,7 @@ final class RunSessionViewModelImpl: RunSessionViewModel {
     }
 }
 
+// MARK: - Private Methods
 private extension RunSessionViewModelImpl {
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
@@ -42,4 +51,14 @@ private extension RunSessionViewModelImpl {
             secondsDuration.value += 1
         }
     }
+    
+    func configureLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension RunSessionViewModelImpl: CLLocationManagerDelegate {
+    
 }

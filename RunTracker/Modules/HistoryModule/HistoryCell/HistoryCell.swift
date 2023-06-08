@@ -20,13 +20,9 @@ final class HistoryCell: UITableViewCell {
         return stack
     }()
     
-    private lazy var leftStack   = setupVStack()
-    private lazy var rightStack = setupVStack()
-    
-    private let durationSection = HistoryCellStatsSectionView(title: "Duration", accentColor: R.Colors.accentCoral)
-    private let distanceSection = HistoryCellStatsSectionView(title: "Distance", accentColor: .systemBlue)
-    private let kcalSection     = HistoryCellStatsSectionView(title: "Kcal", accentColor: .systemYellow)
-    private let dateSection     = HistoryCellStatsSectionView(title: "Date", accentColor: .gray)
+    private let durationSection = SingleStatsView(title: "Duration")
+    private let distanceSection = SingleStatsView(title: "Distance")
+    private let calSection = SingleStatsView(title: "Cal")
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -43,8 +39,8 @@ final class HistoryCell: UITableViewCell {
     func configure(with viewModel: HistoryCellViewModel) {
         durationSection.setValue(viewModel.formattedDuration)
         distanceSection.setValue(viewModel.formattedDistance)
-        kcalSection.setValue(viewModel.formattedKcal)
-        dateSection.setValue(viewModel.formattedDate)
+        calSection.setValue(viewModel.formattedKcal)
+        //dateSection.setValue(viewModel.formattedDate)
     }
 }
 
@@ -64,16 +60,8 @@ private extension HistoryCell {
             containerHStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
         
-        [durationSection, kcalSection].forEach { leftStack.addArrangedSubview($0) }
-        [distanceSection, dateSection].forEach { rightStack.addArrangedSubview($0) }
-        [leftStack, rightStack].forEach { containerHStack.addArrangedSubview($0) }
-    }
-    
-    func setupVStack() -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 8
-        stack.distribution = .fillEqually
-        return stack
+        [distanceSection, durationSection, calSection].forEach {
+            containerHStack.addArrangedSubview($0)
+        }
     }
 }
