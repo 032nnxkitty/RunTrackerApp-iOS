@@ -14,11 +14,13 @@ final class RunSessionViewController: UIViewController {
     // MARK: - UI Elements
     let statsView = RunSessionStatsView()
     
-    private let mapView: MKMapView = {
+    private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.overrideUserInterfaceStyle = .dark
         mapView.mapType = .standard
+        mapView.showsUserLocation = true
+        mapView.delegate = self
         return mapView
     }()
     
@@ -60,6 +62,7 @@ final class RunSessionViewController: UIViewController {
         bindIsUserInteractionEnabled()
         bindIsOnPause()
         bindDuration()
+        bindPath()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,37 +84,9 @@ private extension RunSessionViewController {
         navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
     }
     
-    func bindIsUserInteractionEnabled() {
-        viewModel.isUserInteractionEnabled.bind { [weak self] newValue in
-            guard let self else { return }
-            
-            self.lockButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemRed
-            self.lockButton.configuration?.image = newValue ? UIImage(systemName: "lock.open.fill") : UIImage(systemName: "lock.fill")
-            
-            self.finishButton.isUserInteractionEnabled = newValue
-            self.pauseButton.isUserInteractionEnabled = newValue
-            self.mapView.isUserInteractionEnabled = newValue
-            self.navigationController?.navigationBar.isUserInteractionEnabled = newValue
-        }
-    }
-    
-    func bindIsOnPause() {
-        viewModel.isOnPause.bind { [weak self] newValue in
-            guard let self else { return }
-            self.pauseButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemGray6
-            self.pauseButton.configuration?.baseForegroundColor = newValue ? .black: .white
-        }
-    }
-    
-    func bindDuration() {
-        viewModel.secondsDuration.bind { [weak self] newValue in
-            guard let self else { return }
-            self.statsView.updateDuration(newValue.formatTimer())
-        }
-    }
-    
     func configureMapView() {
         view.insertSubview(mapView, at: 0)
+        
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -152,10 +127,52 @@ private extension RunSessionViewController {
             lockButton.widthAnchor.constraint(equalTo: lockButton.heightAnchor, multiplier: 1)
         ])
     }
+    
+    func bindIsUserInteractionEnabled() {
+        viewModel.isUserInteractionEnabled.bind { [weak self] newValue in
+            guard let self else { return }
+            
+            self.lockButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemRed
+            self.lockButton.configuration?.image = newValue ? UIImage(systemName: "lock.open.fill") : UIImage(systemName: "lock.fill")
+            
+            self.finishButton.isUserInteractionEnabled = newValue
+            self.pauseButton.isUserInteractionEnabled = newValue
+            self.mapView.isUserInteractionEnabled = newValue
+            self.navigationController?.navigationBar.isUserInteractionEnabled = newValue
+        }
+    }
+    
+    func bindIsOnPause() {
+        viewModel.isOnPause.bind { [weak self] newValue in
+            guard let self else { return }
+            self.pauseButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemGray6
+            self.pauseButton.configuration?.baseForegroundColor = newValue ? .black: .white
+        }
+    }
+    
+    func bindDuration() {
+        viewModel.secondsDuration.bind { [weak self] newValue in
+            guard let self else { return }
+            self.statsView.updateDuration(newValue.formatTimer())
+        }
+    }
+    
+    func bindPath() {
+        viewModel.newPathCoordinates.bind { [weak self] newPath in
+            guard let self else { return }
+            
+            let polyLine = MKPolyline(coordinates: newPath, count: newPath.count)
+            self.mapView.addOverlay(polyLine)
+        }
+        
+        let polyline = MKPolyline(coordinates: [.init(latitude: 10, longitude: 10), .init(latitude: 20, longitude: 30)], count: 2)
+        mapView.addOverlay(polyline)
+    }
 }
 
 @objc private extension RunSessionViewController {
     func closeButtonDidTap() {
+        // show alert
         navigationController?.popViewController(animated: true)
     }
     
@@ -164,11 +181,24 @@ private extension RunSessionViewController {
     }
     
     func finishButtonDidTap() {
-        
+        viewModel.finishSession()
     }
     
     func lockButtonDidTap() {
         viewModel.isUserInteractionEnabled.value.toggle()
+    }
+}
+
+// MARK: - MKMapViewDelegate
+extension RunSessionViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = R.Colors.accentGreen
+            return renderer
+        } else {
+            return MKPolylineRenderer()
+        }
     }
 }
 
