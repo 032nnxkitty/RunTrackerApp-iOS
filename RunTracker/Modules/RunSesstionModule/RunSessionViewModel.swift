@@ -14,9 +14,6 @@ protocol RunSessionViewModel {
     var secondsDuration: ObservableObject<Int> { get set }
     
     var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> { get set }
-    var startCoordinate: ObservableObject<CLLocationCoordinate2D> { get set }
-    var finishCoordinate: ObservableObject<CLLocationCoordinate2D> { get set }
-    var pauseCoordinates: ObservableObject<[CLLocationCoordinate2D]> { get set }
     
     func viewDidAppear()
     func pauseButtonDidTap()
@@ -27,7 +24,7 @@ final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     // MARK: - Private Properties
     private var timer: Timer?
     private let locationManager = CLLocationManager()
-    private var previousCoordinate = CLLocationCoordinate2D()
+    private var previousCoordinate: CLLocationCoordinate2D?
     
     // MARK: - Init
     override init() {
@@ -41,9 +38,6 @@ final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     var secondsDuration: ObservableObject<Int> = .init(value: 0)
     
     var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> = .init(value: .init())
-    var startCoordinate: ObservableObject<CLLocationCoordinate2D> = .init(value: .init())
-    var finishCoordinate: ObservableObject<CLLocationCoordinate2D> = .init(value: .init())
-    var pauseCoordinates: ObservableObject<[CLLocationCoordinate2D]> = .init(value: [])
     
     func viewDidAppear() {
         startTimer()
@@ -79,11 +73,7 @@ private extension RunSessionViewModelImpl {
 extension RunSessionViewModelImpl: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newCoordinate = locations.last?.coordinate else { return }
-        newPathCoordinates.value = [previousCoordinate, newCoordinate]
+        newPathCoordinates.value = [previousCoordinate ?? newCoordinate, newCoordinate]
         previousCoordinate = newCoordinate
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        
     }
 }

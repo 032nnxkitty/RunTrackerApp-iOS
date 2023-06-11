@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10330C2A2A3683D4000201DD /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10330C292A3683D4000201DD /* UIViewController+Alerts.swift */; };
 		107953F92A2D0957005AEC75 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953F82A2D0957005AEC75 /* OnboardingViewController.swift */; };
 		107953FB2A2D0A15005AEC75 /* UserDefaults+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */; };
 		107953FD2A2E1510005AEC75 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FC2A2E1510005AEC75 /* Double+Formatting.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10330C292A3683D4000201DD /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		107953F82A2D0957005AEC75 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Onboarding.swift"; sourceTree = "<group>"; };
 		107953FC2A2E1510005AEC75 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				107953FC2A2E1510005AEC75 /* Double+Formatting.swift */,
 				107954142A2E4EF0005AEC75 /* Int+Formatting.swift */,
 				1079543D2A2FAE34005AEC75 /* UIFont+Synthese.swift */,
+				10330C292A3683D4000201DD /* UIViewController+Alerts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				107954052A2E2523005AEC75 /* RunSessionViewModel.swift in Sources */,
 				10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */,
 				107953FD2A2E1510005AEC75 /* Double+Formatting.swift in Sources */,
+				10330C2A2A3683D4000201DD /* UIViewController+Alerts.swift in Sources */,
 				10A642272A291FCF0018F76F /* MainViewModel.swift in Sources */,
 				1079547A2A300678005AEC75 /* RunSessionStatsView.swift in Sources */,
 				107953FB2A2D0A15005AEC75 /* UserDefaults+Onboarding.swift in Sources */,

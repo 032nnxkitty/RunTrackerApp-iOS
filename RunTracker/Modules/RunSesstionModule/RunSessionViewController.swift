@@ -86,7 +86,6 @@ private extension RunSessionViewController {
     
     func configureMapView() {
         view.insertSubview(mapView, at: 0)
-        
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -164,16 +163,15 @@ private extension RunSessionViewController {
             let polyLine = MKPolyline(coordinates: newPath, count: newPath.count)
             self.mapView.addOverlay(polyLine)
         }
-        
-        let polyline = MKPolyline(coordinates: [.init(latitude: 10, longitude: 10), .init(latitude: 20, longitude: 30)], count: 2)
-        mapView.addOverlay(polyline)
     }
 }
 
 @objc private extension RunSessionViewController {
     func closeButtonDidTap() {
-        // show alert
-        navigationController?.popViewController(animated: true)
+        presentAlert(title: "", message: "") { [weak self] in
+            guard let self else { return }
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func pauseButtonDidTap() {
@@ -181,6 +179,7 @@ private extension RunSessionViewController {
     }
     
     func finishButtonDidTap() {
+        presentFinishSessionAlert()
         viewModel.finishSession()
     }
     
