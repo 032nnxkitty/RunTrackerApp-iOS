@@ -8,16 +8,19 @@
 import Foundation
 import CoreLocation
 
-protocol RunSessionViewModel {
-    var isUserInteractionEnabled: ObservableObject<Bool> { get set }
-    var isOnPause: ObservableObject<Bool> { get set }
-    var secondsDuration: ObservableObject<Int> { get set }
-    
-    var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> { get set }
-    
+typealias RunSessionViewModel = RunSessionProperties && RunSessionEventsHandling
+
+protocol RunSessionEventsHandling {
     func viewDidAppear()
     func pauseButtonDidTap()
     func finishSession()
+}
+
+protocol RunSessionProperties {
+    var isUserInteractionEnabled: ObservableObject<Bool> { get set }
+    var isOnPause: ObservableObject<Bool> { get set }
+    var secondsDuration: ObservableObject<Int> { get set }
+    var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> { get set }
 }
 
 final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
@@ -25,10 +28,12 @@ final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     private var timer: Timer?
     private let locationManager = CLLocationManager()
     private var previousCoordinate: CLLocationCoordinate2D?
+    private var runHistoryKeeper: RunsHistoryKeeper
     
     // MARK: - Init
-    override init() {
+    init(runHistoryKeeper: RunsHistoryKeeper) {
         super.init()
+        self.runHistoryKeeper = runHistoryKeeper
         configureLocationManager()
     }
     
@@ -50,6 +55,11 @@ final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     
     func finishSession() {
         timer?.invalidate()
+        
+        // duration
+        // distance
+        // kcal
+        // save to realm
     }
 }
 

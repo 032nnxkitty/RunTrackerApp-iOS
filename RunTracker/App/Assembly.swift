@@ -25,7 +25,8 @@ final class Assembly {
     }
     
     static func createRunSessionModule() -> UIViewController {
-        let viewModel = RunSessionViewModelImpl()
+        let realmManager = RealmManager.shared
+        let viewModel = RunSessionViewModelImpl(runHistoryKeeper: realmManager)
         let vc = RunSessionViewController()
         vc.setViewModel(viewModel)
         return vc
