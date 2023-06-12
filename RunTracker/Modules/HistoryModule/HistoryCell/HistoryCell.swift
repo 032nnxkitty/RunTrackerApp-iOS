@@ -11,24 +11,55 @@ final class HistoryCell: UITableViewCell {
     static let identifier = "HistoryCell"
     
     // MARK: - UI Elements
-    private let containerHStack: UIStackView = {
+    private let containerVStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.spacing = 0
-        stack.distribution = .fillEqually
+        stack.setupStack(axis: .vertical, distribution: .fill, spacing: 0)
         return stack
     }()
     
-    private let durationSection = SingleStatsView(title: "Duration")
-    private let distanceSection = SingleStatsView(title: "Distance")
-    private let calSection = SingleStatsView(title: "Cal")
+    private let runIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = R.Colors.accentGreen
+        imageView.image = .init(systemName: "figure.run")
+        imageView.tintColor = .black
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 8
+        imageView.widthAnchor
+            .constraint(equalToConstant: 50)
+            .isActive = true
+        imageView.heightAnchor
+            .constraint(equalToConstant: 50)
+            .isActive = true
+        return imageView
+    }()
+    
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "01.06.2023"
+        label.font = .boldSystemFont(ofSize: 17)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let weekdayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "monday - morning run"
+        label.textColor = .gray
+        return label
+    }()
+    
+    private let distanceStatsView = SingleStatsView(title: "Km")
+    private let kcalStatsView = SingleStatsView(title: "Ccal")
+    private let durationStatsView = SingleStatsView(title: "Duration")
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureAppearance()
-        configureContent()
+        configureContainerStack()
+        configureTopSection()
+        configureBottomSection()
     }
     
     required init?(coder: NSCoder) {
@@ -37,10 +68,7 @@ final class HistoryCell: UITableViewCell {
     
     // MARK: - Public Methods
     func configure(with viewModel: HistoryCellViewModel) {
-        durationSection.setValue(viewModel.formattedDuration)
-        distanceSection.setValue(viewModel.formattedDistance)
-        calSection.setValue(viewModel.formattedKcal)
-        //dateSection.setValue(viewModel.formattedDate)
+        
     }
 }
 
@@ -48,20 +76,49 @@ final class HistoryCell: UITableViewCell {
 private extension HistoryCell {
     func configureAppearance() {
         backgroundColor = .clear
-        accessoryType = .disclosureIndicator
+//        accessoryType = .disclosureIndicator
     }
     
-    func configureContent() {
-        contentView.addSubview(containerHStack)
+    func configureContainerStack() {
+        contentView.addSubview(containerVStack)
         NSLayoutConstraint.activate([
-            containerHStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            containerHStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            containerHStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            containerHStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            containerVStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            containerVStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            containerVStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            containerVStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
+    }
+    
+    func configureTopSection() {
+        let topStack = UIStackView()
+        topStack.setupStack(axis: .horizontal, distribution: .fill, spacing: 8)
+        containerVStack.addArrangedSubview(topStack)
         
-        [distanceSection, durationSection, calSection].forEach {
-            containerHStack.addArrangedSubview($0)
+        let rightStack = UIStackView()
+        rightStack.setupStack(axis: .vertical, distribution: .fillEqually, spacing: 0)
+        [dateLabel, weekdayLabel].forEach { rightStack.addArrangedSubview($0) }
+        
+        topStack.addArrangedSubview(runIconImageView)
+        topStack.addArrangedSubview(rightStack)
+    }
+    
+    func configureBottomSection() {
+        let bottomStack = UIStackView()
+        bottomStack.setupStack(axis: .horizontal, distribution: .fillEqually, spacing: 0)
+        
+        distanceStatsView.setValue("3.39")
+        distanceStatsView.statsAlignment = .left
+        
+        kcalStatsView.setValue("134")
+        kcalStatsView.statsAlignment = .left
+        
+        durationStatsView.setValue("16:56")
+        durationStatsView.statsAlignment = .left
+        
+        [distanceStatsView, kcalStatsView, durationStatsView].forEach {
+            bottomStack.addArrangedSubview($0)
         }
+        
+        containerVStack.addArrangedSubview(bottomStack)
     }
 }

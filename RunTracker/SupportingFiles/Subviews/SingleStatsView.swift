@@ -37,9 +37,16 @@ final class SingleStatsView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public Methods
+    // MARK: - Public Methods & Properties
     func setValue(_ value: String) {
         valueLabel.text = value
+    }
+    
+    var statsAlignment: NSTextAlignment = .center {
+        didSet {
+            titleLabel.textAlignment = statsAlignment
+            valueLabel.textAlignment = statsAlignment
+        }
     }
 }
 
