@@ -26,18 +26,17 @@ final class CapsuleButton: UIButton {
     override var isHighlighted: Bool {
         didSet {
             guard isAnimated else { return }
-            UIView.animate(
-                withDuration: 0.1,
-                delay: 0,
-                options: [.beginFromCurrentState, .allowUserInteraction]) {
-                    self.transform = self.isHighlighted ? .init(scaleX: 0.9, y: 0.9) : .init(scaleX: 1, y: 1)
-                }
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction]) {
+                self.transform = self.isHighlighted ? .init(scaleX: 0.9, y: 0.9) : .init(scaleX: 1, y: 1)
+            }
         }
     }
     
     // MARK: - Private Methods
     private func configureAppearance(text: String? = nil, image: UIImage? = nil, color: UIColor) {
         var config = UIButton.Configuration.filled()
+        config.title = text
+        config.image = image
         config.baseBackgroundColor = color
         config.baseForegroundColor = .black
         config.cornerStyle = .capsule
@@ -46,14 +45,6 @@ final class CapsuleButton: UIButton {
             var outgoing = incoming
             outgoing.font = .syntheseBold(size: 17, style: .body)
             return outgoing
-        }
-        
-        if let text {
-            setTitle(text, for: .normal)
-        }
-        
-        if let image {
-            config.image = image
         }
         
         self.configuration = config

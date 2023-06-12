@@ -55,7 +55,11 @@ extension HistoryViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let vc = Assembly.createRunSessionStatsModule()
-        navigationController?.pushViewController(vc, animated: true)
+        guard let sheetController = vc.sheetPresentationController else { return }
+        sheetController.preferredCornerRadius = 22
+        sheetController.detents = [.medium()]
+        sheetController.prefersGrabberVisible = true
+        present(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

@@ -44,7 +44,7 @@ final class HistoryCell: UITableViewCell {
     
     private let weekdayLabel: UILabel = {
         let label = UILabel()
-        label.text = "monday - morning run"
+        label.text = "Monday - morning run"
         label.textColor = .gray
         return label
     }()
@@ -91,7 +91,7 @@ private extension HistoryCell {
     
     func configureTopSection() {
         let topStack = UIStackView()
-        topStack.setupStack(axis: .horizontal, distribution: .fill, spacing: 8)
+        topStack.setupStack(axis: .horizontal, distribution: .fill, spacing: 16)
         containerVStack.addArrangedSubview(topStack)
         
         let rightStack = UIStackView()

@@ -22,7 +22,7 @@ final class RunSessionStatsView: UIView {
     
     private let distanceStatsView = SingleStatsView(title: "Distance km")
     private let caloriesStatsView = SingleStatsView(title: "Calories")
-    private let avgPaceStatsView = SingleStatsView(title: "Avg. Pace /km")
+    private let avgPaceStatsView  = SingleStatsView(title: "Avg. Pace /km")
     
     // MARK: - Init
     override init(frame: CGRect) {

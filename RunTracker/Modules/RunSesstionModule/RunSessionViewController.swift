@@ -80,8 +80,10 @@ final class RunSessionViewController: UIViewController {
 private extension RunSessionViewController {
     func configureAppearance() {
         view.backgroundColor = .systemBackground
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonDidTap))
         navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close,
+                                                           target: self,
+                                                           action: #selector(closeButtonDidTap))
     }
     
     func configureMapView() {
@@ -130,7 +132,6 @@ private extension RunSessionViewController {
     func bindIsUserInteractionEnabled() {
         viewModel.isUserInteractionEnabled.bind { [weak self] newValue in
             guard let self else { return }
-            
             self.lockButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemRed
             self.lockButton.configuration?.image = newValue ? UIImage(systemName: "lock.open.fill") : UIImage(systemName: "lock.fill")
             
@@ -159,7 +160,6 @@ private extension RunSessionViewController {
     func bindPath() {
         viewModel.newPathCoordinates.bind { [weak self] newPath in
             guard let self else { return }
-            
             let polyLine = MKPolyline(coordinates: newPath, count: newPath.count)
             self.mapView.addOverlay(polyLine)
         }
