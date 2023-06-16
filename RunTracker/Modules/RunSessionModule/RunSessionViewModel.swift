@@ -21,6 +21,10 @@ protocol RunSessionProperties {
     var isOnPause: ObservableObject<Bool> { get set }
     var secondsDuration: ObservableObject<Int> { get set }
     var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> { get set }
+    
+    var distanceMeters: ObservableObject<Int> { get set }
+    var kcal: ObservableObject<Int> { get set }
+    var avgPace: ObservableObject<Int> { get set }
 }
 
 final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
@@ -43,6 +47,10 @@ final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     var secondsDuration: ObservableObject<Int> = .init(value: 0)
     var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> = .init(value: .init())
     
+    var distanceMeters: ObservableObject<Int> = .init(value: 0)
+    var kcal: ObservableObject<Int> = .init(value: 0)
+    var avgPace: ObservableObject<Int> = .init(value: 0)
+    
     func viewDidAppear() {
         startTimer()
     }
@@ -54,11 +62,7 @@ final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     
     func finishSession() {
         timer?.invalidate()
-        
-        // duration
-        // distance
-        // kcal
-        // save to realm
+        saveStats()
     }
 }
 
@@ -76,6 +80,15 @@ private extension RunSessionViewModelImpl {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
+    
+    func saveStats() {
+        let model = RunInfoModel()
+        model.timeDurationSec = secondsDuration.value
+        model.meters
+        model.cal
+        // fill model
+        // save to realm
+    }
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -84,5 +97,7 @@ extension RunSessionViewModelImpl: CLLocationManagerDelegate {
         guard let newCoordinate = locations.last?.coordinate else { return }
         newPathCoordinates.value = [previousCoordinate ?? newCoordinate, newCoordinate]
         previousCoordinate = newCoordinate
+        
+        // save coordinates to show users path
     }
 }

@@ -164,6 +164,27 @@ private extension RunSessionViewController {
             self.mapView.addOverlay(polyLine)
         }
     }
+    
+    func bindDistance() {
+        viewModel.distanceMeters.bind { [weak self] newValue in
+            guard let self else { return }
+            statsView.updateDistance("\(newValue)")
+        }
+    }
+    
+    func bindKcal() {
+        viewModel.kcal.bind { [weak self] newValue in
+            guard let self else { return }
+            statsView.updateKcal("\(newValue)")
+        }
+    }
+    
+    func bindAvgPace() {
+        viewModel.avgPace.bind { [weak self] newValue in
+            guard let self else { return }
+            statsView.updateAvgPace("\(newValue)")
+        }
+    }
 }
 
 @objc private extension RunSessionViewController {

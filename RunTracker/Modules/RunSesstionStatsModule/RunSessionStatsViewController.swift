@@ -26,6 +26,12 @@ final class RunSessionStatsViewController: UIViewController {
 // MARK: - Private Methods
 private extension RunSessionStatsViewController {
     func configureAppearance() {
+        title = "Stats"
         view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(popBack))
+    }
+    
+    @objc func popBack() {
+        dismiss(animated: true)
     }
 }

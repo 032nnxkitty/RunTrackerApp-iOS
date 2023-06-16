@@ -108,11 +108,9 @@ private extension HistoryCell {
         let bottomStack = UIStackView()
         bottomStack.setupStack(axis: .horizontal, distribution: .fillEqually, spacing: 0)
         
-        distanceStatsView.statsAlignment = .left
-        kcalStatsView.statsAlignment = .left
-        durationStatsView.statsAlignment = .left
-        
         [distanceStatsView, kcalStatsView, durationStatsView].forEach {
+            $0.statsAlignment = .left
+            
             bottomStack.addArrangedSubview($0)
         }
         

@@ -45,6 +45,18 @@ final class RunSessionStatsView: UIView {
     func updateDuration(_ duration: String) {
         durationValueLabel.text = duration
     }
+    
+    func updateDistance(_ distance: String) {
+        distanceStatsView.setValue(distance)
+    }
+    
+    func updateKcal(_ kcal: String) {
+        caloriesStatsView.setValue(kcal)
+    }
+    
+    func updateAvgPace(_ avgPace: String) {
+        avgPaceStatsView.setValue(avgPace)
+    }
 }
 
 // MARK: - Private Methods
@@ -83,10 +95,6 @@ private extension RunSessionStatsView {
         [distanceStatsView, caloriesStatsView, avgPaceStatsView].forEach {
             hStack.addArrangedSubview($0)
         }
-        
-        distanceStatsView.setValue("7.2")
-        caloriesStatsView.setValue("1260")
-        avgPaceStatsView.setValue("9:50")
         
         vStack.addArrangedSubview(hStack)
     }

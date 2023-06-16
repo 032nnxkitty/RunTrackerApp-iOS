@@ -54,7 +54,8 @@ extension HistoryViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = Assembly.createRunSessionStatsModule()
+        var vc = Assembly.createRunSessionStatsModule()
+        vc = UINavigationController(rootViewController: vc)
         guard let sheetController = vc.sheetPresentationController else { return }
         sheetController.preferredCornerRadius = 22
         sheetController.detents = [.medium()]

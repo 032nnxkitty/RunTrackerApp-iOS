@@ -14,15 +14,7 @@ protocol RunsHistoryKeeper {
 
 final class RealmManager {
     static let shared = RealmManager()
-    var realmDB: Realm
-    
-    private init() {
-        do {
-            try self.realmDB = Realm()
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-    }
+    var realmDB: Realm?
 }
 
 // MARK: - RunsHistoryKeeper Protocol
