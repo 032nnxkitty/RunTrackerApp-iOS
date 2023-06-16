@@ -16,7 +16,7 @@ final class HistoryViewModelImpl: HistoryViewModel {
     private var arr: [HistoryCellViewModel] {
         var res = [HistoryCellViewModel]()
         for _ in 0...33 {
-            res.append(HistoryCellViewModel(distanceMeters:  Double.random(in: 1111...12345),
+            res.append(HistoryCellViewModel(distanceMeters:  Int.random(in: 1111...12345),
                                             durationSeconds: Int.random(in: 3600...6666),
                                             kcal: Int.random(in: 200...3000),
                                             date: Date()))

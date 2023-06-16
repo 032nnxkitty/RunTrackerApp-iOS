@@ -11,7 +11,6 @@
 		10330C2C2A3755CA000201DD /* UIStackView+HVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10330C2B2A3755CA000201DD /* UIStackView+HVStack.swift */; };
 		107953F92A2D0957005AEC75 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953F82A2D0957005AEC75 /* OnboardingViewController.swift */; };
 		107953FB2A2D0A15005AEC75 /* UserDefaults+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */; };
-		107953FD2A2E1510005AEC75 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FC2A2E1510005AEC75 /* Double+Formatting.swift */; };
 		107954002A2E1EF1005AEC75 /* SingleStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FF2A2E1EF1005AEC75 /* SingleStatsView.swift */; };
 		107954032A2E2513005AEC75 /* RunSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954022A2E2513005AEC75 /* RunSessionViewController.swift */; };
 		107954052A2E2523005AEC75 /* RunSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107954042A2E2523005AEC75 /* RunSessionViewModel.swift */; };
@@ -48,7 +47,6 @@
 		10330C2B2A3755CA000201DD /* UIStackView+HVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+HVStack.swift"; sourceTree = "<group>"; };
 		107953F82A2D0957005AEC75 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Onboarding.swift"; sourceTree = "<group>"; };
-		107953FC2A2E1510005AEC75 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
 		107953FF2A2E1EF1005AEC75 /* SingleStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleStatsView.swift; sourceTree = "<group>"; };
 		107954022A2E2513005AEC75 /* RunSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionViewController.swift; sourceTree = "<group>"; };
 		107954042A2E2523005AEC75 /* RunSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSessionViewModel.swift; sourceTree = "<group>"; };
@@ -101,13 +99,13 @@
 			path = OnboardingModule;
 			sourceTree = "<group>";
 		};
-		107954012A2E24E5005AEC75 /* RunSesstionModule */ = {
+		107954012A2E24E5005AEC75 /* RunSessionModule */ = {
 			isa = PBXGroup;
 			children = (
 				107954022A2E2513005AEC75 /* RunSessionViewController.swift */,
 				107954042A2E2523005AEC75 /* RunSessionViewModel.swift */,
 			);
-			path = RunSesstionModule;
+			path = RunSessionModule;
 			sourceTree = "<group>";
 		};
 		107954062A2E260B005AEC75 /* RunSesstionStatsModule */ = {
@@ -216,7 +214,7 @@
 				107953F72A2D0922005AEC75 /* OnboardingModule */,
 				10A642232A291D800018F76F /* MainModule */,
 				10A642242A291D870018F76F /* HistoryModule */,
-				107954012A2E24E5005AEC75 /* RunSesstionModule */,
+				107954012A2E24E5005AEC75 /* RunSessionModule */,
 				107954062A2E260B005AEC75 /* RunSesstionStatsModule */,
 			);
 			path = Modules;
@@ -245,7 +243,6 @@
 			children = (
 				10A642422A2939B30018F76F /* UIColor+RGB.swift */,
 				107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */,
-				107953FC2A2E1510005AEC75 /* Double+Formatting.swift */,
 				107954142A2E4EF0005AEC75 /* Int+Formatting.swift */,
 				1079543D2A2FAE34005AEC75 /* UIFont+Synthese.swift */,
 				10330C292A3683D4000201DD /* UIViewController+Alerts.swift */,
@@ -350,7 +347,6 @@
 				10A642302A2923760018F76F /* HistoryCellViewModel.swift in Sources */,
 				107954052A2E2523005AEC75 /* RunSessionViewModel.swift in Sources */,
 				10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */,
-				107953FD2A2E1510005AEC75 /* Double+Formatting.swift in Sources */,
 				10330C2A2A3683D4000201DD /* UIViewController+Alerts.swift in Sources */,
 				10330C2C2A3755CA000201DD /* UIStackView+HVStack.swift in Sources */,
 				10A642272A291FCF0018F76F /* MainViewModel.swift in Sources */,

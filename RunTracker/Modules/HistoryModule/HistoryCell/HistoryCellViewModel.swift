@@ -9,13 +9,13 @@ import Foundation
 
 struct HistoryCellViewModel {
     // MARK: - Private Properties
-    private var distanceMeters:  Double
+    private var distanceMeters:  Int
     private var durationSeconds: Int
     private var kcal: Int
     private var date: Date
     
     // MARK: - Init
-    init(distanceMeters: Double, durationSeconds: Int, kcal: Int, date: Date) {
+    init(distanceMeters: Int, durationSeconds: Int, kcal: Int, date: Date) {
         self.distanceMeters = distanceMeters
         self.durationSeconds = durationSeconds
         self.kcal = kcal
@@ -28,16 +28,21 @@ struct HistoryCellViewModel {
     }
     
     var formattedDuration: String {
-        return durationSeconds.formatDuration()
+        return durationSeconds.formatTime()
     }
     
     var formattedKcal: String {
-        return "\(kcal) Kcal"
+        return "\(kcal)"
     }
     
     var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "d.MM.yyyy"
         return formatter.string(from: date)
+    }
+    
+    var formattedWeekday: String {
+        // check morning, or smth else
+        return "Friday - Evening run"
     }
 }

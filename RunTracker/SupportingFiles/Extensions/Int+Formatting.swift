@@ -8,19 +8,15 @@
 import Foundation
 
 extension Int {
-    func formatDuration() -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
-        formatter.zeroFormattingBehavior = .dropAll
-        formatter.allowedUnits = [.hour, .minute, .second]
-        return formatter.string(from: TimeInterval(self)) ?? ""
-    }
-    
-    func formatTimer() -> String {
+    func formatTime() -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .positional
         formatter.zeroFormattingBehavior = .pad
         return formatter.string(from: TimeInterval(self)) ?? ""
+    }
+    
+    func formatDistance() -> String {
+        return "\(Double(self) / 1000.0)"
     }
 }

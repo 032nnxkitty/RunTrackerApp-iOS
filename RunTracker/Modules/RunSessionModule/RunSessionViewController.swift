@@ -153,7 +153,7 @@ private extension RunSessionViewController {
     func bindDuration() {
         viewModel.secondsDuration.bind { [weak self] newValue in
             guard let self else { return }
-            self.statsView.updateDuration(newValue.formatTimer())
+            self.statsView.updateDuration(newValue.formatTime())
         }
     }
     

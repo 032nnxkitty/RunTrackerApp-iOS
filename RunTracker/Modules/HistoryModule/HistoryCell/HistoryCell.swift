@@ -36,7 +36,6 @@ final class HistoryCell: UITableViewCell {
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "01.06.2023"
         label.font = .boldSystemFont(ofSize: 17)
         label.textColor = .white
         return label
@@ -44,7 +43,6 @@ final class HistoryCell: UITableViewCell {
     
     private let weekdayLabel: UILabel = {
         let label = UILabel()
-        label.text = "Monday - morning run"
         label.textColor = .gray
         return label
     }()
@@ -68,7 +66,12 @@ final class HistoryCell: UITableViewCell {
     
     // MARK: - Public Methods
     func configure(with viewModel: HistoryCellViewModel) {
+        dateLabel.text = viewModel.formattedDate
+        weekdayLabel.text = viewModel.formattedWeekday
         
+        distanceStatsView.setValue(viewModel.formattedDistance)
+        kcalStatsView.setValue(viewModel.formattedKcal)
+        durationStatsView.setValue(viewModel.formattedDuration)
     }
 }
 
@@ -76,7 +79,6 @@ final class HistoryCell: UITableViewCell {
 private extension HistoryCell {
     func configureAppearance() {
         backgroundColor = .clear
-//        accessoryType = .disclosureIndicator
     }
     
     func configureContainerStack() {
@@ -106,13 +108,8 @@ private extension HistoryCell {
         let bottomStack = UIStackView()
         bottomStack.setupStack(axis: .horizontal, distribution: .fillEqually, spacing: 0)
         
-        distanceStatsView.setValue("3.39")
         distanceStatsView.statsAlignment = .left
-        
-        kcalStatsView.setValue("134")
         kcalStatsView.statsAlignment = .left
-        
-        durationStatsView.setValue("16:56")
         durationStatsView.statsAlignment = .left
         
         [distanceStatsView, kcalStatsView, durationStatsView].forEach {

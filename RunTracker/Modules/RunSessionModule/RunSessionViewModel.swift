@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-typealias RunSessionViewModel = RunSessionProperties && RunSessionEventsHandling
+typealias RunSessionViewModel = RunSessionProperties & RunSessionEventsHandling
 
 protocol RunSessionEventsHandling {
     func viewDidAppear()
@@ -32,8 +32,8 @@ final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     
     // MARK: - Init
     init(runHistoryKeeper: RunsHistoryKeeper) {
-        super.init()
         self.runHistoryKeeper = runHistoryKeeper
+        super.init()
         configureLocationManager()
     }
     
@@ -41,7 +41,6 @@ final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     var isUserInteractionEnabled: ObservableObject<Bool> = .init(value: true)
     var isOnPause: ObservableObject<Bool> = .init(value: false)
     var secondsDuration: ObservableObject<Int> = .init(value: 0)
-    
     var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> = .init(value: .init())
     
     func viewDidAppear() {
