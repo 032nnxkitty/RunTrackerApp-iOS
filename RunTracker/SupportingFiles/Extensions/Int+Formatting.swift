@@ -17,6 +17,7 @@ extension Int {
     }
     
     func formatDistance() -> String {
-        return "\(Double(self) / 1000.0)"
+        var km = Double(self) / 1000.0
+        return String(format: "%.1f", km)
     }
 }

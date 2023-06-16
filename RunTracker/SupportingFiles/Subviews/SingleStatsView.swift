@@ -11,7 +11,7 @@ final class SingleStatsView: UIStackView {
     // MARK: - UI Elements
     private let valueLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 27)
+        label.font = .boldSystemFont(ofSize: 24)
         label.textColor = .white
         label.textAlignment = .center
         label.text = "..."
