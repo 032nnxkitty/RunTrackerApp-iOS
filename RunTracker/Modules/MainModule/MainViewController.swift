@@ -12,9 +12,7 @@ final class MainViewController: UIViewController {
     private var viewModel: MainViewModel!
     
     // MARK: - UI Elements
-    private let totalDurationSection = SingleStatsView(title: "Duration")
-    private let totalDistanceSection = SingleStatsView(title: "Distance")
-    private let totalKcalSection = SingleStatsView(title: "Kcal")
+    private let welcomeView = WelcomeView()
     
     private lazy var startRunButton: CapsuleButton = {
         let button = CapsuleButton(text: "Run!", background: R.Colors.accentGreen)
@@ -28,13 +26,18 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         configureAppearance()
-        configureTotalStats()
+        configureWelcomeView()
         configureButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: - Public Methods
@@ -47,25 +50,19 @@ final class MainViewController: UIViewController {
 private extension MainViewController {
     func configureAppearance() {
         view.backgroundColor = .systemBackground
-        title = "Total stats"
     }
     
-    func configureTotalStats() {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.distribution = .fillEqually
-        stack.axis = .horizontal
+    func configureWelcomeView() {
+        welcomeView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(stack)
+        view.addSubview(welcomeView)
         NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            welcomeView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            welcomeView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            welcomeView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 16)
         ])
         
-        [totalDistanceSection, totalDurationSection, totalKcalSection].forEach {
-            stack.addArrangedSubview($0)
-        }
+        welcomeView.configure(with: .afternoon)
     }
     
     func configureButton() {
