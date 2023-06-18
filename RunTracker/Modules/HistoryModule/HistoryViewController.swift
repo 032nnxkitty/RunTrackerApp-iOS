@@ -56,10 +56,6 @@ extension HistoryViewController {
         
         var vc = Assembly.createRunSessionStatsModule()
         vc = UINavigationController(rootViewController: vc)
-        guard let sheetController = vc.sheetPresentationController else { return }
-        sheetController.preferredCornerRadius = 22
-        sheetController.detents = [.medium()]
-        sheetController.prefersGrabberVisible = true
         present(vc, animated: true)
     }
     

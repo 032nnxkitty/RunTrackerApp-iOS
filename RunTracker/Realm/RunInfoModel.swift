@@ -14,7 +14,7 @@ class RunInfoModel: Object {
     dynamic var date:            Date = .init()
     dynamic var timeDurationSec: Int  = 0
     dynamic var meters:          Int  = 0
-    dynamic var cal:             Int  = 0
+    dynamic var kcal:             Int  = 0
     dynamic var averageSpeed:    Int  = 0
     // dynamic var points: (Double, Double) = (0, 0) // ??
 }

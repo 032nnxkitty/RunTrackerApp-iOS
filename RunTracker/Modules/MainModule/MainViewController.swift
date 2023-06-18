@@ -14,7 +14,7 @@ final class MainViewController: UIViewController {
     // MARK: - UI Elements
     private let totalDurationSection = SingleStatsView(title: "Duration")
     private let totalDistanceSection = SingleStatsView(title: "Distance")
-    private let totalCalSection = SingleStatsView(title: "Cal")
+    private let totalKcalSection = SingleStatsView(title: "Kcal")
     
     private lazy var startRunButton: CapsuleButton = {
         let button = CapsuleButton(text: "Run!", background: R.Colors.accentGreen)
@@ -63,7 +63,7 @@ private extension MainViewController {
             stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
         ])
         
-        [totalDistanceSection, totalDurationSection, totalCalSection].forEach {
+        [totalDistanceSection, totalDurationSection, totalKcalSection].forEach {
             stack.addArrangedSubview($0)
         }
     }

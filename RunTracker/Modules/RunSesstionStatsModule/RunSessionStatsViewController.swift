@@ -29,6 +29,10 @@ private extension RunSessionStatsViewController {
         title = "Stats"
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(popBack))
+        
+        sheetPresentationController?.preferredCornerRadius = 22
+        sheetPresentationController?.detents = [.medium()]
+        sheetPresentationController?.prefersGrabberVisible = true
     }
     
     @objc func popBack() {

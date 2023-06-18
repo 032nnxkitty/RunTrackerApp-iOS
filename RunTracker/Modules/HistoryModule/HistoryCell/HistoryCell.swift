@@ -48,7 +48,7 @@ final class HistoryCell: UITableViewCell {
     }()
     
     private let distanceStatsView = SingleStatsView(title: "Km")
-    private let kcalStatsView = SingleStatsView(title: "Ccal")
+    private let kcalStatsView = SingleStatsView(title: "Kcal")
     private let durationStatsView = SingleStatsView(title: "Duration")
     
     // MARK: - Init
