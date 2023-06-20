@@ -19,14 +19,14 @@ final class WelcomeView: UIStackView {
     private let greetingLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.font = .preferredFont(forTextStyle: .body)
+        label.font = .syntheseLight(size: 14, style: .footnote)
         return label
     }()
     
     private let readyLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .preferredFont(forTextStyle: .title2)
+        label.font = .syntheseBold(size: 22, style: .title2)
         return label
     }()
     
@@ -52,7 +52,7 @@ final class WelcomeView: UIStackView {
 private extension WelcomeView {
     func configureStack() {
         axis = .vertical
-        spacing = 4
+        spacing = 0
         
         addArrangedSubview(greetingLabel)
         addArrangedSubview(readyLabel)

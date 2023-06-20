@@ -34,7 +34,7 @@ private extension HistoryViewController {
     }
     
     func configureHistoryTableView() {
-        tableView.register(HistoryCell.self, forCellReuseIdentifier: HistoryCell.identifier)
+        tableView.register(HistoryCell.self, forCellReuseIdentifier: R.Identifiers.history)
     }
 }
 
@@ -45,7 +45,7 @@ extension HistoryViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.Identifiers.history, for: indexPath) as! HistoryCell
         let cellViewModel = viewModel.getViewModelForCell(at: indexPath)
         cell.configure(with: cellViewModel)
         return cell

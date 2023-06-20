@@ -10,6 +10,10 @@
 		10330C2A2A3683D4000201DD /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10330C292A3683D4000201DD /* UIViewController+Alerts.swift */; };
 		10330C2C2A3755CA000201DD /* UIStackView+HVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10330C2B2A3755CA000201DD /* UIStackView+HVStack.swift */; };
 		104415282A3F989300B3B240 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104415272A3F989300B3B240 /* WelcomeView.swift */; };
+		1044154D2A422C2500B3B240 /* ChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1044154C2A422C2500B3B240 /* ChallengeCollectionViewCell.swift */; };
+		1044154F2A422CA700B3B240 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1044154E2A422CA700B3B240 /* EventCollectionViewCell.swift */; };
+		104415512A422FDB00B3B240 /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104415502A422FDB00B3B240 /* HeaderSupplementaryView.swift */; };
+		104415542A423C3500B3B240 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104415532A423C3500B3B240 /* BadgeView.swift */; };
 		107953F92A2D0957005AEC75 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953F82A2D0957005AEC75 /* OnboardingViewController.swift */; };
 		107953FB2A2D0A15005AEC75 /* UserDefaults+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */; };
 		107954002A2E1EF1005AEC75 /* SingleStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107953FF2A2E1EF1005AEC75 /* SingleStatsView.swift */; };
@@ -47,6 +51,10 @@
 		10330C292A3683D4000201DD /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		10330C2B2A3755CA000201DD /* UIStackView+HVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+HVStack.swift"; sourceTree = "<group>"; };
 		104415272A3F989300B3B240 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		1044154C2A422C2500B3B240 /* ChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
+		1044154E2A422CA700B3B240 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		104415502A422FDB00B3B240 /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
+		104415532A423C3500B3B240 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		107953F82A2D0957005AEC75 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		107953FA2A2D0A14005AEC75 /* UserDefaults+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Onboarding.swift"; sourceTree = "<group>"; };
 		107953FF2A2E1EF1005AEC75 /* SingleStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleStatsView.swift; sourceTree = "<group>"; };
@@ -93,6 +101,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1044154B2A422C0A00B3B240 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1044154C2A422C2500B3B240 /* ChallengeCollectionViewCell.swift */,
+				1044154E2A422CA700B3B240 /* EventCollectionViewCell.swift */,
+				104415502A422FDB00B3B240 /* HeaderSupplementaryView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		107953F72A2D0922005AEC75 /* OnboardingModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +144,7 @@
 				107954362A2F9E53005AEC75 /* CapsuleButton.swift */,
 				107954792A300678005AEC75 /* RunSessionStatsView.swift */,
 				104415272A3F989300B3B240 /* WelcomeView.swift */,
+				104415532A423C3500B3B240 /* BadgeView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -182,6 +201,7 @@
 			children = (
 				10A6420C2A2909220018F76F /* MainViewController.swift */,
 				10A642262A291FCF0018F76F /* MainViewModel.swift */,
+				1044154B2A422C0A00B3B240 /* Cells */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -332,12 +352,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				104415542A423C3500B3B240 /* BadgeView.swift in Sources */,
 				107954152A2E4EF0005AEC75 /* Int+Formatting.swift in Sources */,
 				1079543E2A2FAE34005AEC75 /* UIFont+Synthese.swift in Sources */,
 				10A6420D2A2909220018F76F /* MainViewController.swift in Sources */,
 				107954032A2E2513005AEC75 /* RunSessionViewController.swift in Sources */,
 				10A642432A2939B30018F76F /* UIColor+RGB.swift in Sources */,
 				10A6422B2A2920E50018F76F /* Assembly.swift in Sources */,
+				1044154D2A422C2500B3B240 /* ChallengeCollectionViewCell.swift in Sources */,
 				10A6421F2A2918ED0018F76F /* TabBarController.swift in Sources */,
 				10A6422E2A29220B0018F76F /* HistoryCell.swift in Sources */,
 				10A642092A2909220018F76F /* AppDelegate.swift in Sources */,
@@ -351,6 +373,8 @@
 				10A642302A2923760018F76F /* HistoryCellViewModel.swift in Sources */,
 				107954052A2E2523005AEC75 /* RunSessionViewModel.swift in Sources */,
 				10A6420B2A2909220018F76F /* SceneDelegate.swift in Sources */,
+				1044154F2A422CA700B3B240 /* EventCollectionViewCell.swift in Sources */,
+				104415512A422FDB00B3B240 /* HeaderSupplementaryView.swift in Sources */,
 				10330C2A2A3683D4000201DD /* UIViewController+Alerts.swift in Sources */,
 				10330C2C2A3755CA000201DD /* UIStackView+HVStack.swift in Sources */,
 				10A642272A291FCF0018F76F /* MainViewModel.swift in Sources */,

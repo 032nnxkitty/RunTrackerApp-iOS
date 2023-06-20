@@ -11,4 +11,11 @@ enum R {
     enum Colors {
         static let accentGreen: UIColor = .RGB(r: 217, g: 254, b: 84)
     }
+    
+    enum Identifiers {
+        static let challenge: String = "challengeIdentifier"
+        static let event:     String = "eventIdentifier"
+        static let history:   String = "historyIdentifier"
+        static let header:    String = "headerIdentifier"
+    }
 }

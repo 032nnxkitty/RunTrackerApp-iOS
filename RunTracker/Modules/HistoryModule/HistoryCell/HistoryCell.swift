@@ -8,8 +8,6 @@
 import UIKit
 
 final class HistoryCell: UITableViewCell {
-    static let identifier = "HistoryCell"
-    
     // MARK: - UI Elements
     private let containerVStack: UIStackView = {
         let stack = UIStackView()
