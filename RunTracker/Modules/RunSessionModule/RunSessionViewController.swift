@@ -129,31 +129,32 @@ private extension RunSessionViewController {
         ])
     }
     
+    // MARK: - Bindings
     func bindIsUserInteractionEnabled() {
         viewModel.isUserInteractionEnabled.bind { [weak self] newValue in
             guard let self else { return }
-            self.lockButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemRed
-            self.lockButton.configuration?.image = newValue ? UIImage(systemName: "lock.open.fill") : UIImage(systemName: "lock.fill")
+            lockButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemRed
+            lockButton.configuration?.image = newValue ? UIImage(systemName: "lock.open.fill") : UIImage(systemName: "lock.fill")
             
-            self.finishButton.isUserInteractionEnabled = newValue
-            self.pauseButton.isUserInteractionEnabled = newValue
-            self.mapView.isUserInteractionEnabled = newValue
-            self.navigationController?.navigationBar.isUserInteractionEnabled = newValue
+            finishButton.isUserInteractionEnabled = newValue
+            pauseButton.isUserInteractionEnabled = newValue
+            mapView.isUserInteractionEnabled = newValue
+            navigationController?.navigationBar.isUserInteractionEnabled = newValue
         }
     }
     
     func bindIsOnPause() {
         viewModel.isOnPause.bind { [weak self] newValue in
             guard let self else { return }
-            self.pauseButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemGray6
-            self.pauseButton.configuration?.baseForegroundColor = newValue ? .black: .white
+            pauseButton.configuration?.baseBackgroundColor = newValue ? R.Colors.accentGreen : .systemGray6
+            pauseButton.configuration?.baseForegroundColor = newValue ? .black: .white
         }
     }
     
     func bindDuration() {
         viewModel.secondsDuration.bind { [weak self] newValue in
             guard let self else { return }
-            self.statsView.updateDuration(newValue.formatTime())
+            statsView.updateDuration(newValue.formatTime())
         }
     }
     
@@ -161,7 +162,7 @@ private extension RunSessionViewController {
         viewModel.newPathCoordinates.bind { [weak self] newPath in
             guard let self else { return }
             let polyLine = MKPolyline(coordinates: newPath, count: newPath.count)
-            self.mapView.addOverlay(polyLine)
+            mapView.addOverlay(polyLine)
         }
     }
     

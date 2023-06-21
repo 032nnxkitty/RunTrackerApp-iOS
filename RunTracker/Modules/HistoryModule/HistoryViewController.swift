@@ -28,8 +28,8 @@ final class HistoryViewController: UITableViewController {
 // MARK: - Private Methods
 private extension HistoryViewController {
     func configureAppearance() {
-        view.backgroundColor = .systemBackground
         title = "History"
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

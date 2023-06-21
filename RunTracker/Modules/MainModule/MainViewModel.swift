@@ -8,21 +8,23 @@
 import Foundation
 
 protocol MainViewModel {
-    var totalDistance: String { get }
-    var totalDuration: String { get }
-    var totalKcal: String { get }
+    var numberOfSections: Int { get }
+    func numberOfItems(in section: Int) -> Int
 }
 
 final class MainViewModelImpl: MainViewModel {
-    var totalDistance: String {
-        return "10000 km"
+    var numberOfSections: Int {
+        return 2
     }
     
-    var totalDuration: String {
-        return "22 h"
-    }
-    
-    var totalKcal: String {
-        return "4535 Kcal"
+    func numberOfItems(in section: Int) -> Int {
+        switch section {
+        case 0:
+            return 7
+        case 1:
+            return 4
+        default:
+            return 0
+        }
     }
 }
