@@ -9,13 +9,13 @@ import UIKit
 
 final class EventCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Elements
-    private let badge = BadgeView(text: "Marathon")
+    private let badge = BadgeView(text: "")
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "eventMockImage")
+        imageView.image = .init(named: "eventMockImage")
         return imageView
     }()
     
@@ -30,6 +30,9 @@ final class EventCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Public Methods
+    func setTitle(_ text: String) {
+        badge.text = text
+    }
 }
 
 // MARK: - Private Methods

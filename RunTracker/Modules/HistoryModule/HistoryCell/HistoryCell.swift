@@ -9,12 +9,7 @@ import UIKit
 
 final class HistoryCell: UITableViewCell {
     // MARK: - UI Elements
-    private let containerVStack: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.setupStack(axis: .vertical, distribution: .fill, spacing: 0)
-        return stack
-    }()
+    private let containerVStack = UIStackView.setupStack(axis: .vertical)
     
     private let runIconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -90,12 +85,13 @@ private extension HistoryCell {
     }
     
     func configureTopSection() {
-        let topStack = UIStackView()
-        topStack.setupStack(axis: .horizontal, distribution: .fill, spacing: 16)
+        let topStack = UIStackView.setupStack(axis: .horizontal)
+        topStack.spacing = 16
         containerVStack.addArrangedSubview(topStack)
         
-        let rightStack = UIStackView()
-        rightStack.setupStack(axis: .vertical, distribution: .fillEqually, spacing: 0)
+        let rightStack = UIStackView.setupStack(axis: .vertical)
+        rightStack.distribution = .fillEqually
+        rightStack.spacing = 0
         [dateLabel, weekdayLabel].forEach { rightStack.addArrangedSubview($0) }
         
         topStack.addArrangedSubview(runIconImageView)
@@ -103,12 +99,12 @@ private extension HistoryCell {
     }
     
     func configureBottomSection() {
-        let bottomStack = UIStackView()
-        bottomStack.setupStack(axis: .horizontal, distribution: .fillEqually, spacing: 0)
+        let bottomStack = UIStackView.setupStack(axis: .horizontal)
+        bottomStack.distribution = .fillEqually
+        bottomStack.spacing = 0
         
         [distanceStatsView, kcalStatsView, durationStatsView].forEach {
             $0.statsAlignment = .left
-            
             bottomStack.addArrangedSubview($0)
         }
         

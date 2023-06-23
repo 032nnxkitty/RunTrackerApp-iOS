@@ -10,7 +10,6 @@
 		10330C2A2A3683D4000201DD /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10330C292A3683D4000201DD /* UIViewController+Alerts.swift */; };
 		10330C2C2A3755CA000201DD /* UIStackView+HVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10330C2B2A3755CA000201DD /* UIStackView+HVStack.swift */; };
 		104415282A3F989300B3B240 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104415272A3F989300B3B240 /* WelcomeView.swift */; };
-		1044154D2A422C2500B3B240 /* ChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1044154C2A422C2500B3B240 /* ChallengeCollectionViewCell.swift */; };
 		1044154F2A422CA700B3B240 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1044154E2A422CA700B3B240 /* EventCollectionViewCell.swift */; };
 		104415512A422FDB00B3B240 /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104415502A422FDB00B3B240 /* HeaderSupplementaryView.swift */; };
 		104415542A423C3500B3B240 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104415532A423C3500B3B240 /* BadgeView.swift */; };
@@ -51,7 +50,6 @@
 		10330C292A3683D4000201DD /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		10330C2B2A3755CA000201DD /* UIStackView+HVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+HVStack.swift"; sourceTree = "<group>"; };
 		104415272A3F989300B3B240 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		1044154C2A422C2500B3B240 /* ChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
 		1044154E2A422CA700B3B240 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		104415502A422FDB00B3B240 /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 		104415532A423C3500B3B240 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 		1044154B2A422C0A00B3B240 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				1044154C2A422C2500B3B240 /* ChallengeCollectionViewCell.swift */,
 				1044154E2A422CA700B3B240 /* EventCollectionViewCell.swift */,
 				104415502A422FDB00B3B240 /* HeaderSupplementaryView.swift */,
 			);
@@ -359,7 +356,6 @@
 				107954032A2E2513005AEC75 /* RunSessionViewController.swift in Sources */,
 				10A642432A2939B30018F76F /* UIColor+RGB.swift in Sources */,
 				10A6422B2A2920E50018F76F /* Assembly.swift in Sources */,
-				1044154D2A422C2500B3B240 /* ChallengeCollectionViewCell.swift in Sources */,
 				10A6421F2A2918ED0018F76F /* TabBarController.swift in Sources */,
 				10A6422E2A29220B0018F76F /* HistoryCell.swift in Sources */,
 				10A642092A2909220018F76F /* AppDelegate.swift in Sources */,

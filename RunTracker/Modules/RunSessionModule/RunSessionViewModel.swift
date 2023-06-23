@@ -83,7 +83,6 @@ private extension RunSessionViewModelImpl {
     
     func saveStats() {
         let model = RunInfoModel()
-        model.timeDurationSec = secondsDuration.value
         
         // fill model
         // save to realm

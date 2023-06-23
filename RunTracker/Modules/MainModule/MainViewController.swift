@@ -17,7 +17,6 @@ final class MainViewController: UIViewController {
         let layout = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(ChallengeCollectionViewCell.self, forCellWithReuseIdentifier: R.Identifiers.challenge)
         collectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: R.Identifiers.event)
         collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: R.Identifiers.header)
         collectionView.dataSource = self
@@ -176,10 +175,12 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifiers.challenge, for: indexPath) as! ChallengeCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifiers.challenge, for: indexPath) as! EventCollectionViewCell
+            cell.setTitle("Challenge")
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifiers.event, for: indexPath) as! EventCollectionViewCell
+            cell.setTitle("Event")
             return cell
         default:
             return UICollectionViewCell()

@@ -69,9 +69,7 @@ private extension OnboardingViewController {
     }
     
     func configureElements() {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
+        let stack = UIStackView.setupStack(axis: .vertical)
         stack.spacing = 16
         
         view.addSubview(stack)

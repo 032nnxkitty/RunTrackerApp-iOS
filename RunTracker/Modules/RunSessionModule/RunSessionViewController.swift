@@ -108,10 +108,7 @@ private extension RunSessionViewController {
     }
     
     func configureSessionButtons() {
-        let containerStack = UIStackView()
-        containerStack.translatesAutoresizingMaskIntoConstraints = false
-        containerStack.axis = .horizontal
-        containerStack.distribution = .fill
+        let containerStack = UIStackView.setupStack(axis: .horizontal)
         containerStack.spacing = 10
         
         view.addSubview(containerStack)
@@ -121,7 +118,9 @@ private extension RunSessionViewController {
             containerStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
         
-        [finishButton, lockButton, pauseButton].forEach { containerStack.addArrangedSubview($0) }
+        [finishButton, lockButton, pauseButton].forEach {
+            containerStack.addArrangedSubview($0)
+        }
         
         NSLayoutConstraint.activate([
             pauseButton.widthAnchor.constraint(equalTo: finishButton.widthAnchor, multiplier: 1),

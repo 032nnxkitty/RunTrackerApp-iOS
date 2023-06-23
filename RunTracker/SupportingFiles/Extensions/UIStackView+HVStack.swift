@@ -8,13 +8,10 @@
 import UIKit
 
 extension UIStackView {
-    func setupStack(
-        axis: NSLayoutConstraint.Axis,
-        distribution: UIStackView.Distribution,
-        spacing: CGFloat
-    ) {
-        self.axis = axis
-        self.distribution = distribution
-        self.spacing = spacing
+    static func setupStack(axis: NSLayoutConstraint.Axis) -> UIStackView {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = axis
+        return stack
     }
 }
