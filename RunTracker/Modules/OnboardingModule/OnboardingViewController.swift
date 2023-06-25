@@ -113,6 +113,7 @@ private extension OnboardingViewController {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
 extension OnboardingViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {

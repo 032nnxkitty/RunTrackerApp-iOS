@@ -12,30 +12,26 @@ final class Assembly {
     
     static func createMainModule() -> UIViewController {
         let viewModel = MainViewModelImpl()
-        let vc = MainViewController()
-        vc.setViewModel(viewModel)
+        let vc = MainViewController(viewModel: viewModel)
         return vc
     }
     
     static func createHistoryModule() -> UIViewController {
         let viewModel = HistoryViewModelImpl()
-        let vc = HistoryViewController()
-        vc.setViewModel(viewModel)
+        let vc = HistoryViewController(viewModel: viewModel)
         return vc
     }
     
     static func createRunSessionModule() -> UIViewController {
         let realmManager = RealmManager.shared
         let viewModel = RunSessionViewModelImpl(runHistoryKeeper: realmManager)
-        let vc = RunSessionViewController()
-        vc.setViewModel(viewModel)
+        let vc = RunSessionViewController(viewModel: viewModel)
         return vc
     }
     
     static func createRunSessionStatsModule() -> UIViewController {
         let viewModel = RunSessionStatsViewModelImpl()
-        let vc = RunSessionStatsViewController()
-        vc.setViewModel(viewModel)
+        let vc = RunSessionStatsViewController(viewModel: viewModel)
         return vc
     }
 }

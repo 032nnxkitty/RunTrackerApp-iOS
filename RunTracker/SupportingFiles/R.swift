@@ -13,7 +13,6 @@ enum R {
     }
     
     enum Identifiers {
-        static let challenge: String = "challengeIdentifier"
         static let event:     String = "eventIdentifier"
         static let history:   String = "historyIdentifier"
         static let header:    String = "headerIdentifier"

@@ -8,20 +8,25 @@
 import UIKit
 
 final class HistoryViewController: UITableViewController {
-    private var viewModel: HistoryViewModel!
+    private let viewModel: HistoryViewModel
     
     // MARK: - UI Elements
+    
+    // MARK: - Init
+    init(viewModel: HistoryViewModel) {
+        self.viewModel = viewModel
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
         configureHistoryTableView()
-    }
-    
-    // MARK: - Public Methods
-    func setViewModel(_ viewModel: HistoryViewModel) {
-        self.viewModel = viewModel
     }
 }
 

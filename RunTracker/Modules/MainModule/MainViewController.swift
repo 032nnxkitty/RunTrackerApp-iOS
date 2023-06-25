@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    private var viewModel: MainViewModel!
+    private let viewModel: MainViewModel
     
     // MARK: - UI Element
     private let welcomeView = WelcomeView()
@@ -30,6 +30,16 @@ final class MainViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Init
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +58,6 @@ final class MainViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
-    // MARK: - Public Methods
-    func setViewModel(_ viewModel: MainViewModel) {
-        self.viewModel = viewModel
     }
 }
 
@@ -109,43 +114,24 @@ private extension MainViewController {
             guard let self else { return nil }
             switch sectionIndex {
             case 0:
-                return createChallengeSection()
+                return createSection(groupWidth: 0.9, groupHeight: 0.3)
             case 1:
-                return createEventSection()
+                return createSection(groupWidth: 0.7, groupHeight: 0.3)
             default:
                 return nil
             }
         }
     }
     
-    func createChallengeSection() -> NSCollectionLayoutSection {
+    func createSection(groupWidth: CGFloat, groupHeight: CGFloat) -> NSCollectionLayoutSection {
         // Item
         let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         // Group
-        let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.3))
+        let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(groupWidth), heightDimension: .fractionalHeight(groupHeight))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
-        // Section
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPaging
-        section.interGroupSpacing = 8
-        section.boundarySupplementaryItems = [createSupplementaryHeaderItem()]
-        section.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
-        return section
-    }
-    
-    func createEventSection() -> NSCollectionLayoutSection {
-        // Item
-        let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        // Group
-        let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(0.3))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        // Section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
         section.interGroupSpacing = 8
@@ -175,7 +161,7 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifiers.challenge, for: indexPath) as! EventCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifiers.event, for: indexPath) as! EventCollectionViewCell
             cell.setTitle("Challenge")
             return cell
         case 1:
@@ -189,10 +175,7 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
-        
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                     withReuseIdentifier: R.Identifiers.header,
-                                                                     for: indexPath) as! HeaderSupplementaryView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: R.Identifiers.header, for: indexPath) as! HeaderSupplementaryView
         switch indexPath.section {
         case 0:
             header.setTitle("Challenges")
