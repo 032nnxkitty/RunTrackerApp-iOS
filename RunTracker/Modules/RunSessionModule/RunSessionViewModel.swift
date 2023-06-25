@@ -8,49 +8,57 @@
 import Foundation
 import CoreLocation
 
-typealias RunSessionViewModel = RunSessionProperties & RunSessionEventsHandling
+typealias RunSessionViewModel = RunSessionViewModelEventsHandling & RunSessionViewModelProperties
 
-protocol RunSessionEventsHandling {
+protocol RunSessionViewModelEventsHandling {
     func viewDidAppear()
     func pauseButtonDidTap()
     func finishSession()
 }
 
-protocol RunSessionProperties {
-    var isUserInteractionEnabled: ObservableObject<Bool> { get set }
-    var isOnPause: ObservableObject<Bool> { get set }
-    var secondsDuration: ObservableObject<Int> { get set }
-    var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> { get set }
-    
-    var distanceMeters: ObservableObject<Int> { get set }
-    var kcal: ObservableObject<Int> { get set }
-    var avgPace: ObservableObject<Int> { get set }
+protocol RunSessionViewModelProperties {
+    var isUserInteractionEnabled: ObservableObject<Bool> { get }
+    var isOnPause: ObservableObject<Bool> { get }
+    var secondsDuration: ObservableObject<Int> { get }
+    var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> { get }
+    var distanceMeters: ObservableObject<Int> { get }
+    var kcal: ObservableObject<Double> { get }
+    var avgPace: ObservableObject<Int> { get }
 }
 
 final class RunSessionViewModelImpl: NSObject, RunSessionViewModel {
     // MARK: - Private Properties
     private var timer: Timer?
+    
     private let locationManager = CLLocationManager()
+    
     private var previousCoordinate: CLLocationCoordinate2D?
-    private var runHistoryKeeper: RunsHistoryKeeper
+    
+    private var runningHistoryManager: RunningHistoryManager
     
     // MARK: - Init
-    init(runHistoryKeeper: RunsHistoryKeeper) {
-        self.runHistoryKeeper = runHistoryKeeper
+    init(runningHistoryManager: RunningHistoryManager) {
+        self.runningHistoryManager = runningHistoryManager
         super.init()
         configureLocationManager()
     }
     
-    // MARK: - Public Properties & Methods
+    // MARK: - Public Properties
     var isUserInteractionEnabled: ObservableObject<Bool> = .init(value: true)
+    
     var isOnPause: ObservableObject<Bool> = .init(value: false)
+    
     var secondsDuration: ObservableObject<Int> = .init(value: 0)
+    
     var newPathCoordinates: ObservableObject<[CLLocationCoordinate2D]> = .init(value: .init())
     
     var distanceMeters: ObservableObject<Int> = .init(value: 0)
-    var kcal: ObservableObject<Int> = .init(value: 0)
-    var avgPace: ObservableObject<Int> = .init(value: 0)
     
+    var kcal: ObservableObject<Double> = .init(value: 0)
+    
+    let avgPace: ObservableObject<Int> = .init(value: 0)
+    
+    // MARK: - Public Methods
     func viewDidAppear() {
         startTimer()
     }
@@ -72,6 +80,11 @@ private extension RunSessionViewModelImpl {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             guard let self else { return }
             secondsDuration.value += 1
+            
+            // kcal: 1 running min = users weight in kg
+            kcal.value += 80.0 / 60.0
+            // update every 30 min
+            guard secondsDuration.value % (60 * 30) == 0 else { return }
         }
     }
     
@@ -83,7 +96,9 @@ private extension RunSessionViewModelImpl {
     
     func saveStats() {
         let model = RunInfoModel()
-        
+        model.durationSec = secondsDuration.value
+        model.distanceMeters
+        model.kcal
         // fill model
         // save to realm
     }
@@ -93,9 +108,22 @@ private extension RunSessionViewModelImpl {
 extension RunSessionViewModelImpl: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newCoordinate = locations.last?.coordinate else { return }
-        newPathCoordinates.value = [previousCoordinate ?? newCoordinate, newCoordinate]
-        previousCoordinate = newCoordinate
+        
+        if previousCoordinate == nil {
+            previousCoordinate = newCoordinate
+        }
+        
+        newPathCoordinates.value = [previousCoordinate!, newCoordinate]
+        
+        let newLocation = CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude)
+        let prevLocation = CLLocation(latitude: previousCoordinate!.latitude, longitude: previousCoordinate!.longitude)
+        let oldDistance = distanceMeters.value
+        let newDistance = newLocation.distance(from: prevLocation)
+        distanceMeters.value = oldDistance + Int(newDistance)
+        
+        
         
         // save coordinates to show users path
+        previousCoordinate = newCoordinate
     }
 }

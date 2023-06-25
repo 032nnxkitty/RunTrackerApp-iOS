@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-protocol RunsHistoryKeeper {
+protocol RunningHistoryManager {
     func getAllRuns() -> [RunInfoModel]
     func getInfoForRun(at indexPath: IndexPath) -> RunInfoModel?
     func saveNewRun(_ model: RunInfoModel)
@@ -28,7 +28,7 @@ final class RealmManager {
 }
 
 // MARK: - RunsHistoryKeeper Protocol
-extension RealmManager: RunsHistoryKeeper {
+extension RealmManager: RunningHistoryManager {
     func getAllRuns() -> [RunInfoModel] {
         return Array(realmDB.objects(RunInfoModel.self))
     }

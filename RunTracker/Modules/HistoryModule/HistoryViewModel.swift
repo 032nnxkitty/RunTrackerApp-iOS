@@ -13,6 +13,7 @@ protocol HistoryViewModel {
 }
 
 final class HistoryViewModelImpl: HistoryViewModel {
+    private let runningHistoryManager: RunningHistoryManager
     private var arr: [HistoryCellViewModel] {
         var res = [HistoryCellViewModel]()
         for _ in 0...33 {
@@ -22,6 +23,11 @@ final class HistoryViewModelImpl: HistoryViewModel {
                                             date: Date()))
         }
         return res
+    }
+    
+    // MARK: - Init
+    init(runningHistoryManager: RunningHistoryManager) {
+        self.runningHistoryManager = runningHistoryManager
     }
     
     // MARK: - HistoryViewModel Protocol

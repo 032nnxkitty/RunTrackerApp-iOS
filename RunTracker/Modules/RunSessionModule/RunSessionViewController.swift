@@ -72,7 +72,10 @@ final class RunSessionViewController: UIViewController {
         bindIsUserInteractionEnabled()
         bindIsOnPause()
         bindDuration()
+        bindDistance()
         bindPath()
+        bindKcal()
+        bindAvgPace()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -180,7 +183,7 @@ private extension RunSessionViewController {
     func bindKcal() {
         viewModel.kcal.bind { [weak self] newValue in
             guard let self else { return }
-            statsView.updateKcal("\(newValue)")
+            statsView.updateKcal("\(newValue.rounded())")
         }
     }
     
@@ -192,6 +195,7 @@ private extension RunSessionViewController {
     }
 }
 
+// MARK: - Actions
 @objc private extension RunSessionViewController {
     func closeButtonDidTap() {
         presentAlert(title: "", message: "") { [weak self] in

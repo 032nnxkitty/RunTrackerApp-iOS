@@ -17,14 +17,15 @@ final class Assembly {
     }
     
     static func createHistoryModule() -> UIViewController {
-        let viewModel = HistoryViewModelImpl()
+        let realmManager = RealmManager.shared
+        let viewModel = HistoryViewModelImpl(runningHistoryManager: realmManager)
         let vc = HistoryViewController(viewModel: viewModel)
         return vc
     }
     
     static func createRunSessionModule() -> UIViewController {
         let realmManager = RealmManager.shared
-        let viewModel = RunSessionViewModelImpl(runHistoryKeeper: realmManager)
+        let viewModel = RunSessionViewModelImpl(runningHistoryManager: realmManager)
         let vc = RunSessionViewController(viewModel: viewModel)
         return vc
     }

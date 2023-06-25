@@ -39,7 +39,7 @@
 		10A6422B2A2920E50018F76F /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6422A2A2920E50018F76F /* Assembly.swift */; };
 		10A6422E2A29220B0018F76F /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6422D2A29220B0018F76F /* HistoryCell.swift */; };
 		10A642302A2923760018F76F /* HistoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6422F2A2923760018F76F /* HistoryCellViewModel.swift */; };
-		10A642332A29271B0018F76F /* RunsHistoryKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642322A29271A0018F76F /* RunsHistoryKeeper.swift */; };
+		10A642332A29271B0018F76F /* RunningHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A642322A29271A0018F76F /* RunningHistoryManager.swift */; };
 		10A6423A2A29286F0018F76F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 10A642392A29286F0018F76F /* RealmSwift */; };
 		10A6423C2A2929770018F76F /* RunInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6423B2A2929770018F76F /* RunInfoModel.swift */; };
 		10A642402A2939840018F76F /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A6423F2A2939840018F76F /* R.swift */; };
@@ -81,7 +81,7 @@
 		10A6422A2A2920E50018F76F /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		10A6422D2A29220B0018F76F /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		10A6422F2A2923760018F76F /* HistoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellViewModel.swift; sourceTree = "<group>"; };
-		10A642322A29271A0018F76F /* RunsHistoryKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunsHistoryKeeper.swift; sourceTree = "<group>"; };
+		10A642322A29271A0018F76F /* RunningHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningHistoryManager.swift; sourceTree = "<group>"; };
 		10A6423B2A2929770018F76F /* RunInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunInfoModel.swift; sourceTree = "<group>"; };
 		10A6423F2A2939840018F76F /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		10A642422A2939B30018F76F /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		10A6423D2A292B070018F76F /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				10A642322A29271A0018F76F /* RunsHistoryKeeper.swift */,
+				10A642322A29271A0018F76F /* RunningHistoryManager.swift */,
 				10A6423B2A2929770018F76F /* RunInfoModel.swift */,
 			);
 			path = Realm;
@@ -363,7 +363,7 @@
 				107954082A2E263E005AEC75 /* RunSessionStatsViewModel.swift in Sources */,
 				107953F92A2D0957005AEC75 /* OnboardingViewController.swift in Sources */,
 				107954002A2E1EF1005AEC75 /* SingleStatsView.swift in Sources */,
-				10A642332A29271B0018F76F /* RunsHistoryKeeper.swift in Sources */,
+				10A642332A29271B0018F76F /* RunningHistoryManager.swift in Sources */,
 				104415282A3F989300B3B240 /* WelcomeView.swift in Sources */,
 				10A6423C2A2929770018F76F /* RunInfoModel.swift in Sources */,
 				10A642302A2923760018F76F /* HistoryCellViewModel.swift in Sources */,
